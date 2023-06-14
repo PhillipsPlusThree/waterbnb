@@ -1,0 +1,115 @@
+.navbar {
+  padding: 10px;
+    background-color: #fff;
+    height: 60px;
+    box-shadow: 0 1px  rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .navbar-logo {
+    margin-right: 280px;
+    width: 120px;
+    height: auto;
+  }
+  
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 33px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-links button {
+    background-color: transparent;
+    border: none;
+    border-right: 10px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .navbar-links input[type="search"] {
+    width: 100px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #333333;
+  }
+  
+  .navbar-links {
+    margin-right: 240px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the links horizontally */
+  }
+  
+  .navbar-link {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .profile p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .profile svg {
+    width: 20px;
+    height: 20px;
+    color: #333333;
+    cursor: pointer;
+  }
+  
+  .profile-item {
+
+    display: flex;
+    border: solid rgb(212, 212, 212) 1px;
+    border-radius: 28px;
+    padding: 10px;
+    gap: 12px;
+  }
+  
+  
+  
+  
+  
+  
+  /* Add styles for responsiveness */
+  
+  @media screen and (max-width: 768px) {
+    .navbar-container {
+      padding: 0 10px;
+    }
+  
+    .navbar-logo {
+      width: 100px;
+    }
+  
+    .navbar-link {
+      margin-right: 10px;
+    }
+  }
+  

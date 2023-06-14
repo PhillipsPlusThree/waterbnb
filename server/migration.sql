@@ -1,12 +1,26 @@
-DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS rentals;
+DROP TABLE IF EXISTS my_rentals;
 
-CREATE TABLE tasks (
-  id SERIAL,
-  description TEXT
+
+CREATE TABLE rentals (
+  id SERIAL PRIMARY KEY,
+  location TEXT NOT NULL,
+  price INTEGER,
+  date DATE,
+  group_size INTEGER,
+  image VARCHAR 
 );
 
-INSERT INTO tasks(description) VALUES('Do the dishes');
-INSERT INTO tasks(description) VALUES('Walk the dog');
-INSERT INTO tasks(description) VALUES('Sweep the floor');
-INSERT INTO tasks(description) VALUES('Do your homework');
-INSERT INTO tasks(description) VALUES('Beat Elden Ring');
+CREATE TABLE my_rentals (
+  id SERIAL PRIMARY KEY,
+  rental_id INTEGER REFERENCES rentals(id),
+  location TEXT NOT NULL,
+  price INTEGER NOT NULL,
+  date DATE,
+  group_size INTEGER,
+  image TEXT
+);
+
+
+
+

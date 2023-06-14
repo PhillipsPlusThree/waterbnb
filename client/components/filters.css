@@ -1,0 +1,29 @@
+.filter-icons {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
+    /* Add any other styles you need */
+  }
+  
+  .filter-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Add any other styles you need */
+  }
+
+  .filter-icon svg {
+    color: gray;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .filter-title {
+    color: gray;
+    margin-top: 8px;
+    /* Add any other styles you need */
+  }
+  

@@ -1,25 +1,35 @@
 import React, { useEffect, useState } from "react";
+import Cards from "./cards";
+import Navbar from "./Navbar";
+import Filters from "./Filters";
+import axios from "axios";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [count, setCount] = useState(0);
+  const [showCard, setShowCard] = useState(true);
 
-  useEffect(() => {
-    fetch("/api/tasks")
-      .then((res) => res.json())
-      .then((tasks) => {
-        setTasks(tasks);
-      });
-  }, []);
 
+  const handleRemoveCard = () => {
+    setShowCard(false);
+  };
+ 
   return (
-    <main>
-      {tasks.map((task) => (
-        <span className="task" key={task.id}>
-          {task.description}
-        </span>
-      ))}
-    </main>
-  );
-};
+    <>
+    <div className="App">
+    {/* Navbar */}
+    <Navbar onRemoveCard={handleRemoveCard} />
+    <Filters />
+    {showCard && <Cards />}
+    {/* Filter */}
+    
+    {/* Cards */}
+     {/* <Cards /> */}
+    {/* Footer */}
+    </div>
+
+  </>
+    
+  )
+}
 
 export default App;
