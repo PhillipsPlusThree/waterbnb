@@ -18,6 +18,14 @@ app.get("/api/rentals", (_, res) => {
   });
 });
 
+//Route to get Data from specifc Boat
+app.get("/api/rentals/:id", (req, res) => {
+  const rentalId = req.params.id;
+  db.query("SELECT * FROM rentals WHERE id =$1", [rentalId]).then((data) => {
+    res.json(data.rows[0]);
+  });
+});
+
 app.get("/api/my-rentals", (_, res) => {
   db.query("SELECT * FROM my_rentals").then((data) => {
     res.json(data.rows);
