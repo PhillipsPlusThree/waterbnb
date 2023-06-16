@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("api/rentals");
+        const response = await axios.get("/api/rentals");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -32,7 +32,6 @@ const App = () => {
     setShowCard(false);
   };
 
-  //Define a funciton that when called will render Boat Component page
   return (
     <>
       <div className="App">
@@ -42,7 +41,7 @@ const App = () => {
         {selectedRental ? (
           <Boat rentalId={selectedRental} />
         ) : (
-          showCard && <Cards renderBoatPage={renderBoatPage} />
+          showCard && <Cards data={data} renderBoatPage={renderBoatPage} />
         )}
         {/* Filter */}
 

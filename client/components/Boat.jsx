@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Boat = ({ rentalId }) => {
-  const [rentalData, setRental] = useState(null);
+  const [rentalData, setRentalData] = useState(null);
 
   useEffect(() => {
     const fetchRentalData = async () => {
       try {
-        const response = await axios.get("api/rentals/${rentalId}");
+        const response = await axios.get(`/api/rentals/${rentalId}`);
         setRentalData(response.data);
       } catch (error) {
         console.error("Error fetching rental data:", error);
