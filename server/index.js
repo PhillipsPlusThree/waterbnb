@@ -2,32 +2,29 @@ import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 const PORT = 3000;
 const db = new pg.Pool({
-  // connectionString: process.env.DATABASE_URL,
-  connectionString: "postgres://postgres:postgres@localhost/airbnb"
+  connectionString: process.env.DATABASE_URL,
 });
 const app = express();
 
 app.use(express.json());
 
 app.get("/api/rentals", (_, res) => {
-  db.query('SELECT * FROM rentals').then((data) => {
-   res.json(data.rows);
-  });
-});
-
-app.get("/api/my-rentals", (_, res) => {
-  db.query('SELECT * FROM my_rentals').then((data) => {
+  db.query("SELECT * FROM rentals").then((data) => {
     res.json(data.rows);
   });
 });
 
+app.get("/api/my-rentals", (_, res) => {
+  db.query("SELECT * FROM my_rentals").then((data) => {
+    res.json(data.rows);
+  });
+});
 
-
-app.post('/api/rentals', (req, res) => {
+app.post("/api/rentals", (req, res) => {
   const { location, date, group_size } = req.body;
 
   const query = `
@@ -49,11 +46,11 @@ app.post('/api/rentals', (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
+      res.status(500).json({ error: "An error occurred" });
     });
 });
 
-app.post('/api/my-rentals', (req, res) => {
+app.post("/api/my-rentals", (req, res) => {
   const { id, location, price, date, group_size, image } = req.body;
 
   const insertQuery = `
@@ -72,11 +69,11 @@ app.post('/api/my-rentals', (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
+      res.status(500).json({ error: "An error occurred" });
     });
 });
 
-app.delete('/api/my-rentals/:id', (req, res) => {
+app.delete("/api/my-rentals/:id", (req, res) => {
   const rentalId = req.params.id;
 
   const query = `
@@ -94,11 +91,9 @@ app.delete('/api/my-rentals/:id', (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
+      res.status(500).json({ error: "An error occurred" });
     });
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
