@@ -35,7 +35,6 @@ const App = () => {
   return (
     <>
       <div className="App">
-        {/* Navbar */}
         <Navbar onRemoveCard={handleRemoveCard} />
         <Filters />
         {selectedRental ? (

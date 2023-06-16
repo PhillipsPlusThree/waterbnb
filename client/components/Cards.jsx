@@ -4,8 +4,6 @@ import { IoMdHeart } from "react-icons/io";
 import "./cards.css";
 import axios from "axios";
 
-//Move the API request inside the useEffect hook in the App component, rather than in the Cards component. By doing this, you can fetch the data in the parent component and pass it down to the Cards component as a prop. This way, the data is readily available when rendering Cards, and you can avoid making the API call within the rendering process.
-
 const Cards = ({ data, renderBoatPage }) => {
   const [likedCards, setLikedCards] = useState([]);
 
