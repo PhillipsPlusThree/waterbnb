@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS rentals;
 DROP TABLE IF EXISTS my_rentals;
+DROP TABLE IF EXISTS rentals;
 
 
 CREATE TABLE rentals (
