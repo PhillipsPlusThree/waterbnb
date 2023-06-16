@@ -4,22 +4,12 @@ import { IoMdHeart } from "react-icons/io";
 import "./cards.css";
 import axios from "axios";
 
-const Cards = () => {
-  const [data, setData] = useState([]);
+const Cards = ({ data, renderBoatPage }) => {
   const [likedCards, setLikedCards] = useState([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const result = await axios.get("api/rentals");
-        setData(result.data);
-      } catch (error) {
-        // Handle error
-      }
-    };
-
-    getData();
-  }, []);
+  const handleCardClick = (rentalId) => {
+    renderBoatPage(rentalId);
+  };
 
   const handleClick = async (id) => {
     if (likedCards.includes(id)) {
@@ -51,12 +41,15 @@ const Cards = () => {
     }
   };
 
-  //Add on "onClick" to <img> that calls a function defined in App.jsx
   return (
     <div>
       <div className="card-container">
         {data.map((rental) => (
-          <div key={rental.id} className="card">
+          <div
+            key={rental.id}
+            className="card"
+            onClick={() => handleCardClick(rental.id)}
+          >
             <img src={rental.image} alt={rental.location} />
             <div
               className={`like ${
