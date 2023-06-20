@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './search.css';
+import '../styles/search.css';
 import axios from 'axios';
 // import SearchCard from './SearchCard';
 

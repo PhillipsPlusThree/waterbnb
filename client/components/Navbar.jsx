@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
-import "./navbar.css";
+import "../styles/navbar.css";
 import { TbWorld } from "react-icons/tb";
 import { GrMenu } from "react-icons/gr";
 import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
+import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 
 const Navbar = ({ onRemoveCard }) => {
   const [showForm, setShowForm] = useState(false);
+  const [open, setOpen] = useState(false);
+
 
   const handleSearch = (searchData) => {
     // Perform search or any other action based on the selected inputs
     console.log("Search Data:", searchData);
   };
+
+  const handleButtonClick = () => {
+    setOpen(!open);
+  }
 
   return (
     <>
@@ -32,10 +39,16 @@ const Navbar = ({ onRemoveCard }) => {
           </div>
           <div className="profile">
             <p>Airbnb your home</p>
-            <TbWorld />
+            <TbWorld />       
             <div className="profile-item">
-              <GrMenu />
-              <BsPersonCircle />
+              <button 
+                className="relative flex items-center"
+                 onClick={handleButtonClick}
+                 >          
+                  <GrMenu className="mr-2" />
+                  <BsPersonCircle />              
+              </button>
+              {open && <DropDownLogin />}
             </div>
           </div>
         </div>
