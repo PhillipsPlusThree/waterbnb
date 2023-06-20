@@ -24,6 +24,30 @@
   .filter-title {
     color: gray;
     margin-top: 8px;
+    border-bottom: 2px solid transparent; /* Add transparent border initially */
+    padding-bottom: 3px;
     /* Add any other styles you need */
+  }
+
+
+  .filter-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .icon-wrapper {
+    display: inline-block;
+    transition: color 0.3s;
+  }
+
+  .filter-icon:hover .icon-wrapper {
+    filter: brightness(0%); /* Adjust the brightness value to 0% to turn it black */
+  }
+  
+  .filter-icon:hover .filter-title {
+    color: rgb(26, 26, 26);
+    border-bottom: 2px solid rgb(26, 26, 26);
+    padding-bottom: 3px;
   }
   
