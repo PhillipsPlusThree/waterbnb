@@ -16,7 +16,6 @@
     padding: 70px;
     border-radius: 50px;
     width: 400px; 
-    height: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -49,7 +48,7 @@
   
   .modal-button {
     padding: 12px 24px;
-    background-color: #ff5a5f;
+    background-color: hsl(236, 100%, 61%);
     color: #fff;
     border: none;
     border-radius: 15px;
@@ -59,7 +58,7 @@
   }
   
   .modal-button:hover {
-    background-color: #ff4146;
+    background-color: #1212bb;
   }
   
   .modal-button:focus {
