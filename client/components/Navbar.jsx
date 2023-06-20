@@ -38,7 +38,7 @@ const Navbar = ({ onRemoveCard }) => {
             </span>
           </div>
           <div className="profile">
-            <p>Airbnb your home</p>
+            <p>Waterbnb your boat</p>
             <TbWorld />       
             <div className="profile-item">
               <button 

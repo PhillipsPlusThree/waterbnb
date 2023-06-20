@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./boat.css";
+import "../styles/boat.css";
 
 const Boat = ({ rentalId }) => {
   const [rentalData, setRentalData] = useState(null);
