@@ -8,6 +8,7 @@ CREATE TABLE rentals (
   price INTEGER,
   date DATE,
   group_size INTEGER,
+  type TEXT,
   image VARCHAR 
 );
 
