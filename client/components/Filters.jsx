@@ -1,5 +1,5 @@
 import React from 'react'
-import './filters.css'
+import '../styles/filters.css'
 import { TbBeach, TbSailboat, TbMountain, TbCoffee, TbUfo } from 'react-icons/tb';
 import { BiBed } from 'react-icons/bi';
 import { MdCabin, MdOutlineGridOff } from 'react-icons/md';

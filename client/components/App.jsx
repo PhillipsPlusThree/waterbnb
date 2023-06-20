@@ -5,8 +5,9 @@ import Navbar from "./Navbar";
 import Filters from "./Filters";
 import axios from "axios";
 
+
 const App = () => {
-  const [count, setCount] = useState(0);
+
   const [showCard, setShowCard] = useState(true);
   const [selectedRental, setSelectedRental] = useState(null);
   const [data, setData] = useState([]);

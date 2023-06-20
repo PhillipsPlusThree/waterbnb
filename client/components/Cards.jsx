@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
-import "./cards.css";
+import "../styles/cards.css";
 import axios from "axios";
 
 const Cards = ({ data, renderBoatPage }) => {

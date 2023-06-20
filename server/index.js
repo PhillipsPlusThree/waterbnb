@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: "../.env" });
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
 });
