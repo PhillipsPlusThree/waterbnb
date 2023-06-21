@@ -42,6 +42,7 @@ const Filters = ( { onFilter }) => {
   };
 
   return (
+
     <div>
       <div className="filter-icons">
         {sorting.map((item, index) => (
@@ -56,6 +57,7 @@ const Filters = ( { onFilter }) => {
       <div className="card-section">
         <Cards data={rentals} renderBoatPage={handleRenderBoatPage} />
       </div>
+
     </div>
   );
 };
