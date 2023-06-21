@@ -5,7 +5,6 @@ import Navbar from "./Navbar";
 import Filters from "./Filters";
 import axios from "axios";
 
-
 const App = () => {
 
   const [showCard, setShowCard] = useState(true);
