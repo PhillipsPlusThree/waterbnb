@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS my_rentals;
 DROP TABLE IF EXISTS rentals;
-
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE rentals (
   id SERIAL PRIMARY KEY,
@@ -22,6 +22,14 @@ CREATE TABLE my_rentals (
   image TEXT
 );
 
+CREATE TABLE users (
+  id BIGSERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR NOT NULL,
+  email VARCHAR NOT NULL,
+  password VARCHAR NOT NULL,
+  -- UNIQUE prevents use to have 2 email
+  UNIQUE (email) 
+);
 
 
 
