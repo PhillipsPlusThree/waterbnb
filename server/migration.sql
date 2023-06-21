@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS my_rentals;
 DROP TABLE IF EXISTS rentals;
 
-
+ 
 CREATE TABLE rentals (
   id SERIAL PRIMARY KEY,
   location TEXT NOT NULL,
@@ -9,6 +9,9 @@ CREATE TABLE rentals (
   date DATE,
   group_size INTEGER,
   type TEXT,
+  rating INTEGER,
+  review INTEGER,
+  description TEXT,
   image VARCHAR 
 );
 
@@ -19,7 +22,11 @@ CREATE TABLE my_rentals (
   price INTEGER NOT NULL,
   date DATE,
   group_size INTEGER,
-  image TEXT
+  type TEXT,
+  rating INTEGER,
+  review INTEGER,
+  description TEXT,
+  image VARCHAR
 );
 
 
