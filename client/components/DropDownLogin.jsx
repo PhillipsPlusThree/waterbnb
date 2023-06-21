@@ -22,7 +22,7 @@ function DropDownLogin() {
   };
 
   return (
-    <div className='bg-white p-4 w-52 shadow-lg absolute -left-30 top-24'>
+    <div className='bg-white p-4 w-52 shadow-lg absolute -left-30 top-24 z-10'>
       <ul>
         {Menus.map((menu) => (
           <li
