@@ -12,47 +12,96 @@ const app = express();
 
 app.use(express.json());
 
+
+
+
 app.get("/api/rentals", (_, res) => {
   db.query("SELECT * FROM rentals").then((data) => {
-    res.json(data.rows);
+    // Iterate over the rows and format the date field
+    const formattedData = data.rows.map((row) => {
+      const dateString = row.date; // Replace 'date' with the actual date field name
+      const date = new Date(dateString);
+      const formattedDate = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      // Create a new object with the formatted date
+      return {
+        ...row,
+        date: formattedDate // Replace 'date' with the actual date field name
+      };
+    });
+    
+    res.json(formattedData);
   });
 });
+
+// app.get("/api/rentals", (_, res) => {
+//   db.query("SELECT * FROM rentals").then((data) => {
+//     res.json(data.rows);
+//   });
+// });
 
 
 app.get("/api/house-boat", (_, res) => {
   const rentalType = "House Boats";
   db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
+    const formattedData = formatDates(data.rows);
+    res.json(formattedData);
   });
 });
 
 app.get("/api/yacht", (_, res) => {
   const rentalType = "Yachts";
   db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
+    const formattedData = formatDates(data.rows);
+    res.json(formattedData);
   });
 });
 
 app.get("/api/sail-boat", (_, res) => {
   const rentalType = "Sail Boats";
   db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
+    const formattedData = formatDates(data.rows);
+    res.json(formattedData);
   });
 });
 
 app.get("/api/fishing-boat", (_, res) => {
   const rentalType = "Fishing Boats";
   db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
+    const formattedData = formatDates(data.rows);
+    res.json(formattedData);
   });
 });
 
 app.get("/api/power-boat", (_, res) => {
   const rentalType = "Power Boats";
   db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
+    const formattedData = formatDates(data.rows);
+    res.json(formattedData);
   });
 });
+
+// Helper function to format dates in the rows
+function formatDates(rows) {
+  return rows.map((row) => {
+    const dateString = row.date; // Replace 'date' with the actual date field name
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    
+    return {
+      ...row,
+      date: formattedDate // Replace 'date' with the actual date field name
+    };
+  });
+}
 
 
 
