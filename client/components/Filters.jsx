@@ -32,7 +32,7 @@ const Filters = () => {
     };
   
   return (
-    <div className="filter-icons" id="icons">
+    <div className="filter-icons">
       {sorting.map((item, index) => (
         <div className="filter-icon" key={index}>
           <button className="filter-button" onClick={() => handleButtonClick(item.title)}>
