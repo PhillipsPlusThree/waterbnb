@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { IoMdHeart } from "react-icons/io";
-import "../styles/cards.css";
-import axios from "axios";
+import React, { useState } from 'react';
+import { IoMdHeartEmpty } from 'react-icons/io';
+import { IoMdHeart } from 'react-icons/io';
+import '../styles/cards.css';
+import axios from 'axios';
 
 const Cards = ({ data, renderBoatPage }) => {
   const [likedCards, setLikedCards] = useState([]);
@@ -33,10 +33,10 @@ const Cards = ({ data, renderBoatPage }) => {
       // Add the card to my_rentals table
       const selectedCard = data.find((rental) => rental.id === id);
       try {
-        await axios.post("/api/my-rentals", selectedCard);
-        console.log("Added to my_rentals:", selectedCard);
+        await axios.post('/api/my-rentals', selectedCard);
+        console.log('Added to my_rentals:', selectedCard);
       } catch (error) {
-        console.error("Error adding to my_rentals:", error);
+        console.error('Error adding to my_rentals:', error);
       }
     }
   };
@@ -52,9 +52,7 @@ const Cards = ({ data, renderBoatPage }) => {
           >
             <img src={rental.image} alt={rental.location} />
             <div
-              className={`like ${
-                likedCards.includes(rental.id) ? "liked" : ""
-              }`}
+              className={`like ${likedCards.includes(rental.id) ? 'liked' : ''}`}
               onClick={() => handleClick(rental.id)}
             >
               {likedCards.includes(rental.id) ? (
