@@ -18,6 +18,46 @@ app.get("/api/rentals", (_, res) => {
   });
 });
 
+
+app.get("/api/house-boat", (_, res) => {
+  const rentalType = "House Boats";
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
+    res.json(data.rows);
+  });
+});
+
+app.get("/api/yacht", (_, res) => {
+  const rentalType = "Yachts";
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
+    res.json(data.rows);
+  });
+});
+
+app.get("/api/sail-boat", (_, res) => {
+  const rentalType = "Sail Boats";
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
+    res.json(data.rows);
+  });
+});
+
+app.get("/api/fishing-boat", (_, res) => {
+  const rentalType = "Fishing Boats";
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
+    res.json(data.rows);
+  });
+});
+
+app.get("/api/power-boat", (_, res) => {
+  const rentalType = "Power Boats";
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
+    res.json(data.rows);
+  });
+});
+
+
+
+
+
 //Route to get Data from specifc Boat
 app.get("/api/rentals/:id", (req, res) => {
   const rentalId = req.params.id;
