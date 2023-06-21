@@ -16,13 +16,15 @@
   }
 
   .filter-icon svg {
-    color: grey;
+    color: rgb(115, 115, 115);
+
     width: 20px;
     height: 20px;
   }
   
   .filter-title {
-    color: grey;
+    color: rgb(115, 115, 115);
+
     margin-top: 8px;
     border-bottom: 2px solid transparent; /* Add transparent border initially */
     padding-bottom: 3px;

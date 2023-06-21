@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { AiFillStar } from 'react-icons/ai';
 import "../styles/boat.css";
 
 const Boat = ({ rentalId }) => {
@@ -24,16 +25,25 @@ const Boat = ({ rentalId }) => {
 
   return (
     <>
+    <div className="boat-des">
       {/* <h2>${rentalData.name}</h2> */}
       {/* <p>${rentalData.stars}${rentalData.location}</p> */}
-      <h2>{rentalData.location}</h2>
-      <p>Price: ${rentalData.price}</p>
+      <h2>{rentalData.description}</h2>
+      <div className="review">
+        <container className="rate">
+        <AiFillStar />
+      <p>{rentalData.rating}</p>
+      </container>
+      <p>{rentalData.review} reviews</p>
+      <p>{rentalData.location}</p>
+      </div>
       <img src={rentalData.image} alt="boat" />
-      {/* <p>Entire home hosted by ${rentalData.name}</p> */}
-      {/* <p>${rentalData.occupancy}</p> */}
+      <p>Entire boat hosted by Rebecca</p>
+      <p>{rentalData.group_size} guests</p>
       {/* <p>${rentalData.description}</p> */}
+    </div>
     </>
   );
-};
+}; 
 
 export default Boat;

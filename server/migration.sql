@@ -8,7 +8,7 @@ CREATE TABLE rentals (
   date DATE,
   group_size INTEGER,
   type TEXT,
-  rating INTEGER,
+  rating DECIMAL (2,1),
   review INTEGER,
   description TEXT,
   image VARCHAR 
@@ -22,7 +22,7 @@ CREATE TABLE my_rentals (
   date DATE,
   group_size INTEGER,
   type TEXT,
-  rating INTEGER,
+  rating DECIMAL (2,1),
   review INTEGER,
   description TEXT,
   image VARCHAR
