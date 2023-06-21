@@ -7,6 +7,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const Navbar = ({ onRemoveCard }) => {
   const [showForm, setShowForm] = useState(false);
@@ -26,6 +27,14 @@ const Navbar = ({ onRemoveCard }) => {
     <>
       <nav className="navbar">
         {/* left */}
+<Link
+    activeClass="active"
+    to="App"
+    spy={true}
+    smooth={true}
+    offset={-70}
+    duration={500}
+></Link>
         <div className="navbar-container">
           <img src={logo} alt="Logo" className="navbar-logo" />
           {/* middle */}
