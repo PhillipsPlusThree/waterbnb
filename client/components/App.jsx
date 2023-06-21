@@ -10,6 +10,8 @@ const App = () => {
   const [showCard, setShowCard] = useState(true);
   const [selectedRental, setSelectedRental] = useState(null);
   const [data, setData] = useState([]);
+  const [filtersApplied, setFiltersApplied] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,16 +34,27 @@ const App = () => {
     setShowCard(false);
   };
 
+  const handleFilterApplied = () => {
+    setShowCard(false);
+
+  };
+  
+
   return (
     <>
       <div className="App">
         <Navbar onRemoveCard={handleRemoveCard} />
-        <Filters />
+        <Filters onFilter={handleFilterApplied} />
+
         {selectedRental ? (
           <Boat rentalId={selectedRental} />
         ) : (
           showCard && <Cards data={data} renderBoatPage={renderBoatPage} />
         )}
+        {showCard && selectedRental === null && !filtersApplied ? (
+  <Cards data={data} renderBoatPage={renderBoatPage} />
+) : null}
+
         {/* Filter */}
 
         {/* Cards */}
