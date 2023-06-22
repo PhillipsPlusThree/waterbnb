@@ -32,6 +32,10 @@ app.post("/api/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password are required" });
+    }
+
     const isValid = await db.query("SELECT * FROM users WHERE username = $1", [
       username,
     ]);
@@ -39,7 +43,7 @@ app.post("/api/signup", async (req, res) => {
     if (isValid.rows[0]) {
       throw new Error("User already exists");
     }
-    console.log(password)
+ 
     // Add favorites here
 
     const userData = await db.query(
@@ -54,8 +58,8 @@ app.post("/api/signup", async (req, res) => {
       token,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error(error.message);
+    res.status(500).json({ error: error.message});
   }
 });
 
