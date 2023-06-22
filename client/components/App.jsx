@@ -6,12 +6,11 @@ import Filters from "./Filters";
 import axios from "axios";
 
 const App = () => {
-
   const [showCard, setShowCard] = useState(true);
   const [selectedRental, setSelectedRental] = useState(null);
   const [data, setData] = useState([]);
   const [filtersApplied, setFiltersApplied] = useState(false);
-
+  const [showFilters, setShowFilters] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +27,7 @@ const App = () => {
 
   const renderBoatPage = (rentalId) => {
     setSelectedRental(rentalId);
+    setShowFilters(false);
   };
 
   const handleRemoveCard = () => {
@@ -36,27 +36,31 @@ const App = () => {
 
   const handleFilterApplied = () => {
     setShowCard(false);
-
+    setFiltersApplied(true);
   };
-  
+
+  const handleHideFilters = () => {
+    setShowFilters(false);
+  };
 
   return (
     <>
       <div className="App">
-        <Navbar onRemoveCard={handleRemoveCard} />
-        <Filters onFilter={handleFilterApplied} />
-  
+        <Navbar
+          onRemoveCard={handleRemoveCard}
+          onHideFilters={handleHideFilters}
+        />
+        {showFilters && <Filters onFilter={handleFilterApplied} />}
         {selectedRental ? (
           <Boat rentalId={selectedRental} />
         ) : showCard && !filtersApplied ? (
           <Cards data={data} renderBoatPage={renderBoatPage} />
         ) : null}
-  
+
         {/* Footer */}
       </div>
     </>
   );
-  
 };
 
 export default App;
