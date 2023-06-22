@@ -12,7 +12,11 @@ CREATE TABLE rentals (
   rating DECIMAL (2,1),
   review INTEGER,
   description TEXT,
-  image VARCHAR 
+  image1 VARCHAR, 
+  image2 VARCHAR,
+  image3 VARCHAR,
+  image4 VARCHAR,
+  image5 VARCHAR 
 );
 
 CREATE TABLE my_rentals (
@@ -26,7 +30,11 @@ CREATE TABLE my_rentals (
   rating DECIMAL (2,1),
   review INTEGER,
   description TEXT,
-  image VARCHAR
+  image1 VARCHAR,
+  image2 VARCHAR,
+  image3 VARCHAR,
+  image4 VARCHAR,
+  image5 VARCHAR 
 );
 
 CREATE TABLE users (
