@@ -67,8 +67,6 @@ app.post("/api/login", async (req, res) => {
       username,
     ]);
 
-      
-
     const isValid = await bcrypt.compare(password, user.rows[0].password);
     console.log(isValid)
     if(!isValid) {
