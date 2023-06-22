@@ -12,7 +12,11 @@ CREATE TABLE rentals (
   rating DECIMAL (2,1),
   review INTEGER,
   description TEXT,
-  image VARCHAR 
+  image1 VARCHAR, 
+  image2 VARCHAR,
+  image3 VARCHAR,
+  image4 VARCHAR,
+  image5 VARCHAR 
 );
 
 CREATE TABLE my_rentals (
@@ -26,16 +30,17 @@ CREATE TABLE my_rentals (
   rating DECIMAL (2,1),
   review INTEGER,
   description TEXT,
-  image VARCHAR
+  image1 VARCHAR,
+  image2 VARCHAR,
+  image3 VARCHAR,
+  image4 VARCHAR,
+  image5 VARCHAR 
 );
 
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR NOT NULL,
-  email VARCHAR NOT NULL,
-  password VARCHAR NOT NULL,
-  -- UNIQUE prevents use to have 2 email
-  UNIQUE (email) 
+  username VARCHAR NOT NULL,
+  password VARCHAR NOT NULL
 );
 
 

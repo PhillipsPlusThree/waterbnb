@@ -5,4 +5,11 @@
 
 #LLogin {
     width: 500px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+#RLogin {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
