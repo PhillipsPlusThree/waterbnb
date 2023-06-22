@@ -9,12 +9,11 @@ import ReactSwitch from "react-switch";
 const ThemeContext = createContext(null);
 
 const App = () => {
-
   const [showCard, setShowCard] = useState(true);
   const [selectedRental, setSelectedRental] = useState(null);
   const [data, setData] = useState([]);
   const [filtersApplied, setFiltersApplied] = useState(false);
-
+  const [showFilters, setShowFilters] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +30,7 @@ const App = () => {
 
   const renderBoatPage = (rentalId) => {
     setSelectedRental(rentalId);
+    setShowFilters(false);
   };
 
   const handleRemoveCard = () => {
@@ -39,7 +39,11 @@ const App = () => {
 
   const handleFilterApplied = () => {
     setShowCard(false);
+    setFiltersApplied(true);
+  };
 
+  const handleHideFilters = () => {
+    setShowFilters(false);
   };
 
 
@@ -69,6 +73,5 @@ const App = () => {
       </div>
     </ThemeContext.Provider>
   );
-  };
 
 export default App;

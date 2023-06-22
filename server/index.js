@@ -67,8 +67,6 @@ app.post("/api/login", async (req, res) => {
       username,
     ]);
 
-      
-
     const isValid = await bcrypt.compare(password, user.rows[0].password);
     console.log(isValid)
     if(!isValid) {
@@ -234,7 +232,9 @@ app.get("/api/power-boat", (_, res) => {
 
 
 app.post("/api/rentals", (req, res) => {
-  const { location, date, group_size } = req.body;
+  let { location, date, group_size } = req.body;
+
+  location = location.charAt(0).toUpperCase() + location.slice(1).toLowerCase();
 
   const query = `
     SELECT * FROM rentals
