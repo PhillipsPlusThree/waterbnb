@@ -25,3 +25,31 @@ body {
 .task > * + * {
   margin-left: 4px;
 }
+
+#light {
+  background-color: white;
+}
+
+#dark {
+  background-color: #333333;
+}
+
+.Switch {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#light .Switch {
+  background-color: white;
+}
+
+#dark .Switch {
+  background-color: rgb(194, 191, 191);
+}
+
+.rs {
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: #333333;
+}

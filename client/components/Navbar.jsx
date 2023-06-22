@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import logo from "../assets/logo.png";
 import "../styles/navbar.css";
 import { TbWorld } from "react-icons/tb";
@@ -7,7 +7,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
-// import { Link, animateScroll as scroll } from "react-scroll";
+import ReactSwitch from "react-switch";
 
 const Navbar = ({ onRemoveCard, onHideFilters }) => {
   const [showForm, setShowForm] = useState(false);
@@ -21,6 +21,7 @@ const Navbar = ({ onRemoveCard, onHideFilters }) => {
   const handleButtonClick = () => {
     setOpen(!open);
   };
+
 
   return (
     <>

@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import Cards from "./Cards";
 import Boat from "./Boat";
 import Navbar from "./Navbar";
 import Filters from "./Filters";
 import axios from "axios";
+import ReactSwitch from "react-switch";
+
+const ThemeContext = createContext(null);
 
 const App = () => {
   const [showCard, setShowCard] = useState(true);
@@ -43,24 +46,32 @@ const App = () => {
     setShowFilters(false);
   };
 
-  return (
-    <>
-      <div className="App">
-        <Navbar
-          onRemoveCard={handleRemoveCard}
-          onHideFilters={handleHideFilters}
-        />
-        {showFilters && <Filters onFilter={handleFilterApplied} />}
-        {selectedRental ? (
-          <Boat rentalId={selectedRental} />
-        ) : showCard && !filtersApplied ? (
-          <Cards data={data} renderBoatPage={renderBoatPage} />
-        ) : null}
 
-        {/* Footer */}
+    const [theme, setTheme] = useState("light");
+
+    const toggleTheme = () => {
+      setTheme((curr) => (curr === "light" ? "dark" : "light"));
+    };
+   return (
+    <ThemeContext.Provider value={[ theme, toggleTheme ]}>
+      <div className="App" id={theme}>
+          <form />
+
+        <div className="Switch">
+         <ReactSwitch className="rs" onChange={toggleTheme} checked={theme === "dark"} onColor="#333333" />
+        </div>
+         <Navbar onRemoveCard={handleRemoveCard} onChange={toggleTheme} checked={theme === "dark"} />
+         <Filters onFilter={handleFilterApplied} />
+  
+         {selectedRental ? (
+           <Boat rentalId={selectedRental} />
+           ) : showCard && !filtersApplied ? (
+             <Cards data={data} renderBoatPage={renderBoatPage} />
+             ) : null}
+  
+         {/* Footer */}
       </div>
-    </>
+    </ThemeContext.Provider>
   );
-};
 
 export default App;
