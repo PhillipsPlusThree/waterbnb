@@ -91,6 +91,7 @@
     padding: 10px;
     gap: 12px;
   }
+
   
   
   
@@ -111,5 +112,13 @@
     .navbar-link {
       margin-right: 10px;
     }
+  }
+
+  #dark .navbar{
+    background-color: rgb(194, 191, 191);
+  } 
+  
+  #dark .navbar-links{
+    background-color: grey;
   }
   
