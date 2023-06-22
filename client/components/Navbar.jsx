@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import logo from "../assets/logo.png";
 import "../styles/navbar.css";
 import { TbWorld } from "react-icons/tb";
@@ -7,7 +7,6 @@ import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
-import { Link, animateScroll as scroll } from "react-scroll";
 
 const Navbar = ({ onRemoveCard }) => {
   const [showForm, setShowForm] = useState(false);
@@ -23,18 +22,17 @@ const Navbar = ({ onRemoveCard }) => {
     setOpen(!open);
   }
 
+  const ThemeContext = createContext("dark");
+
+function Navbar () {
+  const [theme, ThemeContext] = useState("light");
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
   return (
     <>
       <nav className="navbar">
         {/* left */}
-<Link
-    activeClass="active"
-    to="App"
-    spy={true}
-    smooth={true}
-    offset={-70}
-    duration={500}
-></Link>
         <div className="navbar-container">
           <img src={logo} alt="Logo" className="navbar-logo" />
           {/* middle */}
@@ -58,6 +56,11 @@ const Navbar = ({ onRemoveCard }) => {
                   <BsPersonCircle />              
               </button>
               {open && <DropDownLogin />}
+              <ThemeContext.Provider value={{ theme, toggleTheme }}>
+                <div className="LDMode" id={theme}>
+                  <form />
+                </div>
+              </ThemeContext.Provider>
             </div>
           </div>
         </div>
@@ -68,6 +71,7 @@ const Navbar = ({ onRemoveCard }) => {
       </nav>
     </>
   );
+};
 };
 
 export default Navbar;

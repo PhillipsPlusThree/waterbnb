@@ -91,6 +91,14 @@
     padding: 10px;
     gap: 12px;
   }
+
+  #light {
+    background-color: white;
+  }
+
+  #dark {
+    background-color: #333333;
+  }
   
   
   
