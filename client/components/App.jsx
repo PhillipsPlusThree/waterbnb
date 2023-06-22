@@ -43,24 +43,43 @@ const App = () => {
 
   };
 
-  const handleRemoveSearch = () => {
-    (false);
-  }
-  
 
- 
+  const handleHideFilters = () => {
+    setShowFilters(false);
+  };
+
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
+
   return (
-    <>
-      <div className="App">
-        <Navbar onRemoveCard={handleRemoveCard}  />
-        <Filters onFilter={handleFilterApplied} onRemoveSearch={handleRemoveSearch}  />
-  
+    <ThemeContext.Provider value={[theme, toggleTheme]}>
+      <div className="App" id={theme}>
+        <form />
+
+        <div className="Switch">
+          <ReactSwitch
+            className="rs"
+            onChange={toggleTheme}
+            checked={theme === "dark"}
+            onColor="#333333"
+          />
+        </div>
+        <Navbar
+          onRemoveCard={handleRemoveCard}
+          onChange={toggleTheme}
+          onHideFilters={handleHideFilters}
+          checked={theme === "dark"}
+        />
+        {showFilters && <Filters onFilter={handleFilterApplied} />}
         {selectedRental ? (
           <Boat rentalId={selectedRental} />
-        ) : showSearch && showCard && !filtersApplied ? (
+        ) : showCard && !filtersApplied ? (
           <Cards data={data} renderBoatPage={renderBoatPage} />
         ) : null}
-  
+
         {/* Footer */}
       </div>
     </>
