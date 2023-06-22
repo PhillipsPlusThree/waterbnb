@@ -17,6 +17,16 @@ app.use(express.json());
 
 app.use(hashPasswordMiddleware);
 
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await db.query("SELECT * FROM users");
+    res.json(users.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 app.post("/api/signup", async (req, res) => {
   try {
