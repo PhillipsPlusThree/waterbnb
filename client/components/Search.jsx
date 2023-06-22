@@ -88,7 +88,7 @@ const Search = ({ onSearch, onRemoveCard }) => {
     <div className="new-card-container">
       {searchResults.map((rental) => (
         <div className="new-card">
-          <img src={rental.image} alt={rental.location} />
+          <img src={rental.image1} alt={rental.location} />
           <h2>{rental.location}</h2>
           <p>Price: ${rental.price}</p>
           <p>Date: {rental.date}</p>
