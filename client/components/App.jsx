@@ -14,6 +14,8 @@ const App = () => {
   const [data, setData] = useState([]);
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
+  const [searchSuccesful, setSearchSuccesful] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +48,9 @@ const App = () => {
     setShowFilters(false);
   };
 
-  const [theme, setTheme] = useState("light");
+  const handleSearchSuccess = () => {
+    setSearchSuccesful(true);
+  };
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
@@ -69,10 +73,11 @@ const App = () => {
           onRemoveCard={handleRemoveCard}
           onChange={toggleTheme}
           onHideFilters={handleHideFilters}
+          onSearchSuccess={handleSearchSuccess}
           checked={theme === "dark"}
         />
         {showFilters && <Filters onFilter={handleFilterApplied} />}
-        {selectedRental ? (
+        {selectedRental && !searchSuccesful && !showFilters ? (
           <Boat rentalId={selectedRental} />
         ) : showCard && !filtersApplied ? (
           <Cards data={data} renderBoatPage={renderBoatPage} />

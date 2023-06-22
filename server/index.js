@@ -2,7 +2,7 @@ import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import { hashPasswordMiddleware } from "./auth.js";
 
 dotenv.config({ path: "../.env" });
@@ -27,7 +27,6 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-
 app.post("/api/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -39,7 +38,7 @@ app.post("/api/signup", async (req, res) => {
     if (isValid.rows[0]) {
       throw new Error("User already exists");
     }
-    console.log(password)
+    console.log(password);
     // Add favorites here
 
     const userData = await db.query(
@@ -62,15 +61,15 @@ app.post("/api/signup", async (req, res) => {
 app.post("/api/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    
+
     const user = await db.query("SELECT * FROM users WHERE username = $1", [
       username,
     ]);
 
     const isValid = await bcrypt.compare(password, user.rows[0].password);
-    console.log(isValid)
-    if(!isValid) {
-      return res.status(400).json({err: 'invalid password'});
+    console.log(isValid);
+    if (!isValid) {
+      return res.status(400).json({ err: "invalid password" });
     }
     const token = jwt.sign(user.rows[0].id, process.env.JWT_TOKEN);
 
@@ -84,27 +83,25 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-
-
 app.get("/api/rentals", (_, res) => {
   db.query("SELECT * FROM rentals").then((data) => {
     // Iterate over the rows and format the date field
     const formattedData = data.rows.map((row) => {
       const dateString = row.date; // Replace 'date' with the actual date field name
       const date = new Date(dateString);
-      const formattedDate = date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+      const formattedDate = date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       });
-      
+
       // Create a new object with the formatted date
       return {
         ...row,
-        date: formattedDate // Replace 'date' with the actual date field name
+        date: formattedDate, // Replace 'date' with the actual date field name
       };
     });
-    
+
     res.json(formattedData);
   });
 });
@@ -115,69 +112,6 @@ app.get("/api/rentals", (_, res) => {
 //   });
 // });
 
-
-app.get("/api/house-boat", (_, res) => {
-  const rentalType = "House Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    const formattedData = formatDates(data.rows);
-    res.json(formattedData);
-  });
-});
-
-app.get("/api/yacht", (_, res) => {
-  const rentalType = "Yachts";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    const formattedData = formatDates(data.rows);
-    res.json(formattedData);
-  });
-});
-
-app.get("/api/sail-boat", (_, res) => {
-  const rentalType = "Sail Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    const formattedData = formatDates(data.rows);
-    res.json(formattedData);
-  });
-});
-
-app.get("/api/fishing-boat", (_, res) => {
-  const rentalType = "Fishing Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    const formattedData = formatDates(data.rows);
-    res.json(formattedData);
-  });
-});
-
-app.get("/api/power-boat", (_, res) => {
-  const rentalType = "Power Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    const formattedData = formatDates(data.rows);
-    res.json(formattedData);
-  });
-});
-
-// Helper function to format dates in the rows
-function formatDates(rows) {
-  return rows.map((row) => {
-    const dateString = row.date; // Replace 'date' with the actual date field name
-    const date = new Date(dateString);
-    const formattedDate = date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    
-    return {
-      ...row,
-      date: formattedDate // Replace 'date' with the actual date field name
-    };
-  });
-}
-
-
-
-
-
 //Route to get Data from specifc Boat
 app.get("/api/rentals/:id", (req, res) => {
   const rentalId = req.params.id;
@@ -186,51 +120,57 @@ app.get("/api/rentals/:id", (req, res) => {
   });
 });
 
-app.get("/api/my-rentals", (_, res) => {
-  db.query("SELECT * FROM my_rentals").then((data) => {
-    res.json(data.rows);
-  });
-});
-
 app.get("/api/house-boat", (_, res) => {
   const rentalType = "House Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
-  });
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then(
+    (data) => {
+      const formattedData = formatDates(data.rows);
+      res.json(formattedData);
+    }
+  );
 });
 
 app.get("/api/yacht", (_, res) => {
   const rentalType = "Yachts";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
-  });
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then(
+    (data) => {
+      const formattedData = formatDates(data.rows);
+      res.json(formattedData);
+    }
+  );
 });
 
 app.get("/api/sail-boat", (_, res) => {
   const rentalType = "Sail Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
-  });
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then(
+    (data) => {
+      const formattedData = formatDates(data.rows);
+      res.json(formattedData);
+    }
+  );
 });
 
 app.get("/api/fishing-boat", (_, res) => {
   const rentalType = "Fishing Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
-  });
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then(
+    (data) => {
+      const formattedData = formatDates(data.rows);
+      res.json(formattedData);
+    }
+  );
 });
 
 app.get("/api/power-boat", (_, res) => {
   const rentalType = "Power Boats";
-  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then((data) => {
-    res.json(data.rows);
-  });
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then(
+    (data) => {
+      const formattedData = formatDates(data.rows);
+      res.json(formattedData);
+    }
+  );
 });
 
-
-
-
-
+// Helper function to format dates in the rows
 app.post("/api/rentals", (req, res) => {
   let { location, date, group_size } = req.body;
 
@@ -242,12 +182,13 @@ app.post("/api/rentals", (req, res) => {
     AND date <= $2
     AND group_size >= $3
   `;
-
   const values = [`%${location}%`, date, group_size];
 
   // Execute the database query
   db.query(query, values)
     .then((result) => {
+      const formattedData = formatDates(result.rows);
+      res.json(formattedData);
       console.log("Search query:", query, values);
       console.log("Search results:", result.rows);
       const filteredResults = result.rows;
@@ -258,6 +199,23 @@ app.post("/api/rentals", (req, res) => {
       res.status(500).json({ error: "An error occurred" });
     });
 });
+
+function formatDates(rows) {
+  return rows.map((row) => {
+    const dateString = row.date; // Replace 'date' with the actual date field name
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    return {
+      ...row,
+      date: formattedDate, // Replace 'date' with the actual date field name
+    };
+  });
+}
 
 app.post("/api/my-rentals", (req, res) => {
   const { id, location, price, date, group_size, image } = req.body;
