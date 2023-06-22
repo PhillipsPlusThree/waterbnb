@@ -29,7 +29,7 @@ app.post("/api/signup", async (req, res) => {
     if (isValid.rows[0]) {
       throw new Error("User already exists");
     }
-
+    console.log(password)
     // Add favorites here
 
     const userData = await db.query(
@@ -56,6 +56,7 @@ app.post("/api/login", async (req, res) => {
     const user = await db.query("SELECT * FROM users WHERE username = $1", [
       username,
     ]);
+
       
 
     const isValid = await bcrypt.compare(password, user.rows[0].password);
