@@ -32,14 +32,18 @@ app.post("/api/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password are required" });
+    }
+
     const isValid = await db.query("SELECT * FROM users WHERE username = $1", [
       username,
     ]);
 
-    if (isValid.rows[0]) {
-      throw new Error("User already exists");
-    }
-    console.log(password)
+    // if (isValid.rows[0]) {
+    //   throw new Error("User already exists");
+    // }
+ 
     // Add favorites here
 
     const userData = await db.query(
