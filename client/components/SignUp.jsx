@@ -13,8 +13,7 @@ function SignUp() {
       <div className='grid grid-cols-1 sm:grid-cols-2'> 
         <div className='hidden sm:block' >
           <img className='w-full h-full object-cover' id='LLogin' src={ boatLogo } alt='' />
-        </div>
-              
+        </div>            
         <div className='bg-gray-800 flex flex-col justify-center rounded-br-30' id='RLogin'>
             <form className='max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg'>
               <h2 className='text-4x1 dark:text-white font-bold text-center'>Register</h2>
@@ -28,8 +27,7 @@ function SignUp() {
               </div>
               <button className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'>Sign Up</button>
             </form>
-        </div>
-        
+        </div>       
       </div>
     </div>
   )
