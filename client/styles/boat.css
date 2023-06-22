@@ -24,8 +24,46 @@ h2 {
   align-items: center;
 }
 
-img {
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  width: 50%;
+.boat-pics {
+  display: flex;
+  justify-content: space-between;
 }
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+}
+
+.img-container:first-child img {
+  
+  width: 700px;
+  height: 450px;
+}
+
+.img-container:nth-child(2) img {
+  margin-bottom: 10px;
+  width: 500px;
+  height: 220px; /* Adjust the width as per your preference */
+}
+
+.img-container:nth-child(3) img {
+  
+  margin-bottom: 10px;
+  width: 500px;
+  height: 220px; /* Adjust the width as per your preference */
+}
+
+.img-container:nth-child(4) img {
+  width: 500px;
+  height: 220px;
+}
+.img-container:nth-child(5) img {
+ 
+  width: 500px; 
+  height: 220px;/* Adjust the width as per your preference */
+}
+
+
+

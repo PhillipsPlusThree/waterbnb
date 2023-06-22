@@ -50,7 +50,7 @@ const Cards = ({ data, renderBoatPage }) => {
             className="card"
             onClick={() => handleCardClick(rental.id)}
           >
-            <img src={rental.image} alt={rental.location} />
+            <img src={rental.image1} alt={rental.location} />
             <div
               className={`like ${likedCards.includes(rental.id) ? 'liked' : ''}`}
               onClick={() => handleClick(rental.id)}
