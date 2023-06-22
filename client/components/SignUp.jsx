@@ -10,7 +10,7 @@ function SignUp() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
+  
     try {
       const result = await axios.post('/api/signup', {
         username: username,
@@ -19,10 +19,11 @@ function SignUp() {
       console.log(result.data);
       setSignUpStatus('Success');
     } catch (error) {
-      console.error(error);
-      setSignUpStatus('Failure');
+      console.error(error.response.data.error);
+        setSignUpStatus(error.response.data.error) 
     }
   };
+  
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
@@ -55,15 +56,15 @@ function SignUp() {
               Sign Up
             </button>
           </form>
-          {signUpStatus && (
+            {signUpStatus && (
             <div className="text-center text-white">
               {signUpStatus === 'Success' ? (
                 <h1 className="text-green-500">Account created successfully!</h1>
               ) : (
-                <h1 className="text-red-500">Failed to create account.</h1>
+                <h1 className="text-red-500">{signUpStatus}</h1>
               )}
             </div>
-          )}
+          )}_
         </div>
       </div>
     </div>

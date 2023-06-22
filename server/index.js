@@ -40,9 +40,9 @@ app.post("/api/signup", async (req, res) => {
       username,
     ]);
 
-    // if (isValid.rows[0]) {
-    //   throw new Error("User already exists");
-    // }
+    if (isValid.rows[0]) {
+      throw new Error("User already exists");
+    }
  
     // Add favorites here
 
@@ -58,8 +58,8 @@ app.post("/api/signup", async (req, res) => {
       token,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error(error.message);
+    res.status(500).json({ error: error.message});
   }
 });
 
