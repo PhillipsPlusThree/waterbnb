@@ -45,24 +45,18 @@ const App = () => {
       <div className="App">
         <Navbar onRemoveCard={handleRemoveCard} />
         <Filters onFilter={handleFilterApplied} />
-
+  
         {selectedRental ? (
           <Boat rentalId={selectedRental} />
-        ) : (
-          showCard && <Cards data={data} renderBoatPage={renderBoatPage} />
-        )}
-        {showCard && selectedRental === null && !filtersApplied ? (
-  <Cards data={data} renderBoatPage={renderBoatPage} />
-) : null}
-
-        {/* Filter */}
-
-        {/* Cards */}
-        {/* <Cards /> */}
+        ) : showCard && !filtersApplied ? (
+          <Cards data={data} renderBoatPage={renderBoatPage} />
+        ) : null}
+  
         {/* Footer */}
       </div>
     </>
   );
+  
 };
 
 export default App;
