@@ -4,19 +4,19 @@ import '../styles/login.css'
 
 
 function Login() {
-
+  
 
 
 
 
   return (
-    <div class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">  
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">  
       <div className='grid grid-cols-1 sm:grid-cols-2'> 
         <div className='hidden sm:block' >
           <img className='w-full h-full object-cover' id='LLogin' src={ boatLogo } alt='' />
         </div>
               
-        <div className='bg-gray-800 flex flex-col justify-center' id='RLogin'>
+        <div className='bg-gray-800 flex flex-col justify-center rounded-br-30' id='RLogin'>
             <form className='max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg'>
               <h2 className='text-4x1 dark:text-white font-bold text-center'>SIGN IN</h2>
               <div className='flex flex-col text-gray-400 py-2'>

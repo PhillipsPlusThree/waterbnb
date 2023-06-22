@@ -39,11 +39,8 @@ CREATE TABLE my_rentals (
 
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR NOT NULL,
-  email VARCHAR NOT NULL,
-  password VARCHAR NOT NULL,
-  -- UNIQUE prevents use to have 2 email
-  UNIQUE (email) 
+  username VARCHAR NOT NULL,
+  password VARCHAR NOT NULL
 );
 
 
