@@ -7,7 +7,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
-// import { Link, animateScroll as scroll } from "react-scroll";
+
 
 const Navbar = ({ onRemoveCard }) => {
   const [showForm, setShowForm] = useState(false);
