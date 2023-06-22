@@ -7,6 +7,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
+import ReactSwitch from "react-switch";
 
 const Navbar = ({ onRemoveCard }) => {
   const [showForm, setShowForm] = useState(false);
@@ -22,13 +23,7 @@ const Navbar = ({ onRemoveCard }) => {
     setOpen(!open);
   }
 
-  const ThemeContext = createContext("dark");
 
-function Navbar () {
-  const [theme, ThemeContext] = useState("light");
-  const toggleTheme = () => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light"));
-  };
   return (
     <>
       <nav className="navbar">
@@ -56,11 +51,6 @@ function Navbar () {
                   <BsPersonCircle />              
               </button>
               {open && <DropDownLogin />}
-              <ThemeContext.Provider value={{ theme, toggleTheme }}>
-                <div className="LDMode" id={theme}>
-                  <form />
-                </div>
-              </ThemeContext.Provider>
             </div>
           </div>
         </div>
@@ -71,7 +61,6 @@ function Navbar () {
       </nav>
     </>
   );
-};
 };
 
 export default Navbar;

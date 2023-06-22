@@ -1,6 +1,9 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt"
+import { hashPasswordMiddleware } from "./auth.js";
 
 dotenv.config({ path: "../.env" });
 
@@ -12,6 +15,76 @@ const app = express();
 
 app.use(express.json());
 
+app.use(hashPasswordMiddleware);
+
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await db.query("SELECT * FROM users");
+    res.json(users.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+app.post("/api/signup", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const isValid = await db.query("SELECT * FROM users WHERE username = $1", [
+      username,
+    ]);
+
+    if (isValid.rows[0]) {
+      throw new Error("User already exists");
+    }
+    console.log(password)
+    // Add favorites here
+
+    const userData = await db.query(
+      "INSERT INTO users(username, password) VALUES ($1, $2) RETURNING *",
+      [username, password]
+    );
+
+    const token = jwt.sign(userData.rows[0].id, process.env.JWT_TOKEN);
+
+    res.json({
+      status: "success",
+      token,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.post("/api/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    
+    const user = await db.query("SELECT * FROM users WHERE username = $1", [
+      username,
+    ]);
+
+      
+
+    const isValid = await bcrypt.compare(password, user.rows[0].password);
+    console.log(isValid)
+    if(!isValid) {
+      return res.status(400).json({err: 'invalid password'});
+    }
+    const token = jwt.sign(user.rows[0].id, process.env.JWT_TOKEN);
+
+    res.json({
+      status: "success",
+      token,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 
 
