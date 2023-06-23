@@ -9,7 +9,7 @@ import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 import ReactSwitch from "react-switch";
 
-const Navbar = ({ onRemoveCard, onHideFilters }) => {
+const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess }) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -21,7 +21,6 @@ const Navbar = ({ onRemoveCard, onHideFilters }) => {
   const handleButtonClick = () => {
     setOpen(!open);
   };
-
 
   return (
     <>
@@ -59,6 +58,7 @@ const Navbar = ({ onRemoveCard, onHideFilters }) => {
             onSearch={handleSearch}
             onRemoveCard={onRemoveCard}
             onHideFilters={onHideFilters}
+            onSearchSuccess={onSearchSuccess}
           />
         )}
       </nav>
