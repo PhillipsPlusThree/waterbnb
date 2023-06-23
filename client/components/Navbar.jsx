@@ -2,14 +2,14 @@ import React, { createContext, useState } from "react";
 import logo from "../assets/logo.png";
 import "../styles/navbar.css";
 import { TbWorld } from "react-icons/tb";
-import { GrMenu } from "react-icons/gr";
+import { MdMenuOpen } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 import ReactSwitch from "react-switch";
 
-const Navbar = ({ onRemoveCard, onHideFilters }) => {
+const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess }) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,7 +22,6 @@ const Navbar = ({ onRemoveCard, onHideFilters }) => {
     setOpen(!open);
   };
 
-
   return (
     <>
       <nav className="navbar">
@@ -31,9 +30,9 @@ const Navbar = ({ onRemoveCard, onHideFilters }) => {
           <img src={logo} alt="Logo" className="navbar-logo" />
           {/* middle */}
           <div className="navbar-links">
-            <button onClick={() => setShowForm(!showForm)}>Anywhere</button>
-            <button onClick={() => setShowForm(!showForm)}>Any Week</button>
-            <button onClick={() => setShowForm(!showForm)}>Add guests</button>
+            <button className="button-text" onClick={() => setShowForm(!showForm)}>Anywhere</button>
+            <button className="button-text" onClick={() => setShowForm(!showForm)}>Any Week</button>
+            <button className="button-text" onClick={() => setShowForm(!showForm)}>Add guests</button>
             <span className="search-icon">
               <BiSearchAlt />
             </span>
@@ -46,7 +45,7 @@ const Navbar = ({ onRemoveCard, onHideFilters }) => {
                 className="relative flex items-center"
                 onClick={handleButtonClick}
               >
-                <GrMenu className="mr-2" />
+                <MdMenuOpen className="mr-2" />
                 <BsPersonCircle />
               </button>
               {open && <DropDownLogin />}
@@ -59,6 +58,7 @@ const Navbar = ({ onRemoveCard, onHideFilters }) => {
             onSearch={handleSearch}
             onRemoveCard={onRemoveCard}
             onHideFilters={onHideFilters}
+            onSearchSuccess={onSearchSuccess}
           />
         )}
       </nav>

@@ -3,7 +3,7 @@ import "../styles/search.css";
 import axios from "axios";
 // import SearchCard from './SearchCard';
 
-const Search = ({ onSearch, onRemoveCard, onHideFilters }) => {
+const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   // const [endDate, setEndDate] = useState('');
@@ -38,6 +38,7 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters }) => {
       onRemoveCard();
       onHideFilters();
       setShowModal(false);
+      onSearchSuccess();
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
@@ -89,9 +90,9 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters }) => {
             <div className="new-card" key={rental.id}>
               <img src={rental.image1} alt={rental.location} />
               <h2>{rental.location}</h2>
-              <p>Price: ${rental.price}</p>
-              <p>Date: {rental.date}</p>
-              <p>Group Size: {rental.group_size}</p>
+              <p>${rental.price}</p>
+              <p>{rental.date}</p>
+              <p>{rental.group_size} guests</p>
             </div>
           ))
         )}

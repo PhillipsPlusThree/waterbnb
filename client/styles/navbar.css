@@ -5,6 +5,7 @@
   }
   
   .navbar-container {
+    position: relative;
     display: flex;
     align-items: center;
     padding: 20px;
@@ -83,7 +84,6 @@
   }
   
   .profile-item {
-
     display: flex;
     justify-content: flex-end;
     border: solid rgb(212, 212, 212) 1px;
@@ -115,10 +115,28 @@
   }
 
   #dark .navbar{
-    background-color: rgb(194, 191, 191);
+    background-color: #000000;
   } 
   
   #dark .navbar-links{
-    background-color: grey;
+    background-color: #454545;
+  }
+
+  #dark .profile p {
+    color: #d4d4d4;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 5px;
   }
   
+  #dark .profile svg {
+    width: 20px;
+    height: 20px;
+    color: #d4d4d4;
+    cursor: pointer;
+  }
+
+  #dark .button-text {
+    color: #749bff;
+  }
