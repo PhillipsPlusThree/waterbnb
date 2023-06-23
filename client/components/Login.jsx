@@ -3,12 +3,12 @@ import axios from 'axios';
 import boatLogo from '../assets/boat.png';
 import '../styles/login.css';
 
-function SignUp() {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginStatus, setLoginStatus] = useState('');
 
-  const handleSignUp = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
@@ -17,12 +17,13 @@ function SignUp() {
         password: password,
       });
       console.log(result.data);
-      setLoginStatus('Success'); // Set login status to 'Success' if login is successful
+      setLoginStatus('Success');
     } catch (error) {
       console.error(error);
-      setLoginStatus('Failure'); // Set login status to 'Failure' if login fails
+      setLoginStatus(error.response.data.err);
     }
   };
+
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
@@ -31,7 +32,7 @@ function SignUp() {
           <img className="w-full h-full object-cover" id="LLogin" src={boatLogo} alt="" />
         </div>
         <div className="bg-gray-800 flex flex-col justify-center rounded-br-30" id="RLogin">
-          <form className="max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg" onSubmit={handleSignUp}>
+          <form className="max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg" onSubmit={handleLogin}>
             <h2 className="text-4x1 dark:text-white font-bold text-center">Login</h2>
             <div className="flex flex-col text-gray-400 py-2">
               <label>Username</label>
@@ -52,7 +53,7 @@ function SignUp() {
               />
             </div>
             <button className="w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg" type="submit">
-              Sign Up
+             Login
             </button>
           </form>
           {loginStatus && (
@@ -60,7 +61,7 @@ function SignUp() {
               {loginStatus === 'Success' ? (
                 <h1 className="text-green-500">Login successfully!</h1>
               ) : (
-                <h1 className="text-red-500">Failed to Login.</h1>
+                <h1 className="text-red-500">{loginStatus}</h1>
               )}
             </div>
           )}
@@ -70,4 +71,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;
