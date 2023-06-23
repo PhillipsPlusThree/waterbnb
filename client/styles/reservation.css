@@ -1,3 +1,7 @@
+#res-control {
+  display: flex;
+}
+
 #reservation {
   width: 300px;
   height: 550px;
@@ -7,7 +11,7 @@
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
   padding: 24px;
-  margin-top: 50px;
+  margin-left: 250px;
 }
 
 #res-top {
