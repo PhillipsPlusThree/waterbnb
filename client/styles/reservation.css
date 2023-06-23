@@ -1,3 +1,9 @@
+#res-control {
+  display: flex;
+  width: 100%;
+  margin-left: 1360px;
+}
+
 #reservation {
   width: 300px;
   height: 550px;
