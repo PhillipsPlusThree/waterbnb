@@ -44,11 +44,18 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
     }
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div>
       {showModal && (
         <div className="modal">
           <div className="modal-content">
+            <button className="close-button" onClick={handleCloseModal}>
+              X
+            </button>
             <div className="modal-form-group">
               <label className="modal-label">Location</label>
               <input
@@ -82,11 +89,9 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
           </div>
         </div>
       )}
-      <div className="new-card-container">
-        {searchResults.length === 0 ? (
-          <p>No matches found</p>
-        ) : (
-          searchResults.map((rental) => (
+      {!showModal && searchResults.length > 0 && (
+        <div className="new-card-container">
+          {searchResults.map((rental) => (
             <div className="new-card" key={rental.id}>
               <img src={rental.image1} alt={rental.location} />
               <h2>{rental.location}</h2>
@@ -94,9 +99,9 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
               <p>{rental.date}</p>
               <p>{rental.group_size} guests</p>
             </div>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
