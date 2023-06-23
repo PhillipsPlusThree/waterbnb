@@ -16,7 +16,7 @@ function Login({ setUser, onHandleButtonClick }) {
         username: username,
         password: password,
       });
-      console.log(result.data);
+      // console.log(result.data);
       setLoginStatus('Success');
     } catch (error) {
       console.error(error);
@@ -32,7 +32,14 @@ function Login({ setUser, onHandleButtonClick }) {
           <img className="w-full h-full object-cover" id="LLogin" src={boatLogo} alt="" />
         </div>
         <div className="bg-gray-800 flex flex-col justify-center rounded-br-30" id="RLogin">
-        <button className='' onClick={onHandleButtonClick}>X</button>
+          <button
+            className="absolute top-2 right-2 bg-gray-300 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-400 focus:bg-gray-400"
+            onClick={onHandleButtonClick}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <form className="max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg" onSubmit={handleLogin}>
           
             <h2 className="text-4x1 dark:text-white font-bold text-center">Login</h2>
