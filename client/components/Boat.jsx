@@ -29,7 +29,7 @@ const Boat = ({ rentalId }) => {
       <div className="boat-des">
         {/* <h2>${rentalData.name}</h2> */}
         {/* <p>${rentalData.stars}${rentalData.location}</p> */}
-        <h2>{rentalData.description}</h2>
+        <h2 className="boat-title">{rentalData.description}</h2>
         <div className="review">
           <div className="rate">
             <AiFillStar />

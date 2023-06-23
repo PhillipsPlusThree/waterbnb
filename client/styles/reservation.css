@@ -137,7 +137,6 @@
 
 
 
-
 #reserve-box p {
   text-align: center;
   font-size: 14px;
@@ -230,6 +229,7 @@ hr {
 #dark #total-price.prices {
   color: #b2b0b0;
 }
+
 
 #dark #reserve-btn {
   color: rgb(0, 0, 0);
