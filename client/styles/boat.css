@@ -65,5 +65,14 @@ h2 {
   height: 220px;/* Adjust the width as per your preference */
 }
 
+#dark h2 {
+  color: rgb(241, 241, 241);
+}
 
+#dark .boat-des {
+ color: #b2b0b0;
+}
 
+#dark .review {
+  color:#b2b0b0;
+}

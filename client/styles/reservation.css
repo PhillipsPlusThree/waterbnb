@@ -107,17 +107,11 @@
   padding-top: 20px;
 }
 
+
+
 #reserve-btn {
   color: rgb(255, 255, 255);
-  background-image: radial-gradient(
-    circle at center center,
-    rgb(255, 56, 92) 0%,
-    rgb(230, 30, 77) 27.5%,
-    rgb(227, 28, 95) 40%,
-    rgb(215, 4, 102) 57.5%,
-    rgb(189, 30, 89) 75%,
-    rgb(189, 30, 89) 100%
-  );
+  background-color: blue;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -125,6 +119,20 @@
   font-size: 20px;
   margin-bottom: 10px;
 }
+
+#reserve-btn:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(2, 2, 168);
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+
+
 
 #reserve-box p {
   text-align: center;
@@ -151,4 +159,92 @@ hr {
 #total,
 #total-price {
   font-weight: bold;
+}
+
+
+#dark #reservation {
+  background-color: rgb(42, 42, 42);
+}
+
+#dark #rate {
+  color:#b2b0b0;
+}
+
+#dark #per-night {
+  color: #b2b0b0;
+}
+
+#dark #stars {
+  color: #b2b0b0;
+}
+
+#dark #reviews {
+  color: #b2b0b0;
+}
+
+#dark #in {
+  color: #b2b0b0;
+  
+} 
+
+#dark #out {
+  color: #b2b0b0;
+}
+
+#dark #guests {
+  color: #b2b0b0;
+}
+
+#dark #price-night.prices {
+  color: #b2b0b0;
+}
+
+#dark #cleaning.prices {
+  color: #b2b0b0;
+}
+
+#dark #service.prices {
+  color: #b2b0b0;
+}
+
+#dark #total.prices {
+  color: #b2b0b0;
+}
+
+#dark #priceXnight.prices {
+  color: #b2b0b0;
+}
+
+#dark #cleaning-fee.prices {
+  color: #b2b0b0;
+}
+
+#dark #service-fee.prices {
+  color: #b2b0b0;
+}
+
+#dark #total-price.prices {
+  color: #b2b0b0;
+}
+
+#dark #reserve-btn {
+  color: rgb(0, 0, 0);
+  background-color: #d4d4d4;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#dark #reserve-btn:hover {
+  color: #fff;
+  background-color: rgb(118, 168, 255);
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
