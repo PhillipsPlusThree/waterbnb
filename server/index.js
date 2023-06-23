@@ -177,6 +177,16 @@ app.get("/api/power-boat", (_, res) => {
   );
 });
 
+app.get("/api/trending", (_, res) => {
+  const rentalType = "Trending";
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then(
+    (data) => {
+      const formattedData = formatDates(data.rows);
+      res.json(formattedData);
+    }
+  );
+});
+
 // Helper function to format dates in the rows
 app.post("/api/rentals", (req, res) => {
   let { location, date, group_size } = req.body;
