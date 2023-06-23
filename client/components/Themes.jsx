@@ -3,13 +3,13 @@ import ReactSwitch from "react-switch";
 
 const Themes = ({ theme, toggleTheme }) => {
   return (
-    <div className="Themes">
+    <div className="themes">
       <ReactSwitch
         className="rs"
         onChange={toggleTheme}
         checked={theme === "dark"}
         onColor="#333333"
-        
+
       />
     </div>
   );

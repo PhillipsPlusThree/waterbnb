@@ -50,19 +50,16 @@
     color: #333333;
   }
   
-  .navbar-links {
+  .navbar-links { 
+    margin-right: 20px;
+    cursor: pointer;
     list-style-type: none;
     display: flex;
     align-items: center;
     justify-content: center; /* Center the links horizontally */
   }
   
-  .navbar-link {
-    margin-right: 20px;
-    cursor: pointer;
-  }
-  
-  
+ 
   .profile {
     display: flex;
     align-items: center;
@@ -120,7 +117,16 @@
   
   #dark .navbar-links{
     background-color: #454545;
+    border: 1px solid #535353;
   }
+
+#dark .button-text {
+  color: #c6c3c3;
+}
+
+#dark .navbar-links {
+  color:#fff;
+}
 
   #dark .profile p {
     color: #d4d4d4;
@@ -137,6 +143,6 @@
     cursor: pointer;
   }
 
-  #dark .button-text {
-    color: #749bff;
-  }
+ 
+  
+  

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.themes {
+  display:flex;
+}
 .task {
   display: flex;
   align-items: center;
@@ -38,3 +41,4 @@
 .rs-handle:active {
   background-color: #ccc;
 }
+

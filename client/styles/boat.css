@@ -88,6 +88,19 @@ h2 {
   font-weight: bold;
 }
 
+
+#dark h2 {
+  color: rgb(241, 241, 241);
+}
+
+#dark .boat-des {
+ color: #b2b0b0;
+}
+
+#dark .review {
+  color:#b2b0b0;
+}
+
 .small-p {
   font-weight: lighter;
   font-size: smaller;
@@ -102,3 +115,4 @@ h2 {
 hr {
   margin-bottom: 20px;
 }
+

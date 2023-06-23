@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import SignUp from './SignUp';
 import LogIn from './Login.jsx';
 import WaterBNBBoat from './WaterBNBBoat';
+import Themes from "./Themes";
+import '../styles/dropdown.css';
 
-function DropDownLogin() {
+
+const  DropDownLogin = ({ theme, toggleTheme }) => {
   const Menus = ['Sign Up', 'Log in', 'Waterbnb your boat', 'Help'];
   const [selectedComponent, setSelectedComponent] = useState(null);
 
@@ -33,6 +36,9 @@ function DropDownLogin() {
             {menu}
           </li>
         ))}
+        <div className='mode'>Theme
+        <Themes theme={theme} toggleTheme={toggleTheme} />
+        </div>
       </ul>
       {selectedComponent}
     </div>
