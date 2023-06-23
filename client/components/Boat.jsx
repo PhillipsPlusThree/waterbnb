@@ -62,20 +62,20 @@ const Boat = ({ rentalId }) => {
         <div id="boat-description">
           <hr />
           <span>
-            <p class="bold-p">Dedicated workspace</p>
-            <p class="small-p">
+            <p className="bold-p">Dedicated workspace</p>
+            <p className="small-p">
               A room with wifi that's well-suited for working.
             </p>
           </span>
           <span>
-            <p class="bold-p">Self check-in</p>
-            <p class="small-p">Check yourself in with the keypad.</p>
+            <p className="bold-p">Self check-in</p>
+            <p className="small-p">Check yourself in with the keypad.</p>
           </span>
           <span>
-            <p class="bold-p">Free cancellation for 48 hours.</p>
+            <p className="bold-p">Free cancellation for 48 hours.</p>
           </span>
           <hr />
-          <p class="big-l">
+          <p className="big-l">
             Welcome aboard the Aqua Haven! Prepare to embark on a remarkable
             waterfront retreat like no other. Step onto this enchanting boat and
             immerse yourself in a world of tranquility on the picturesque waters
@@ -83,7 +83,7 @@ const Boat = ({ rentalId }) => {
             unforgettable experience.
           </p>
 
-          <p class="big-l">
+          <p className="big-l">
             Indulge in the breathtaking views of the glistening lake from the
             expansive deck, where you can bask in the warm sunlight or marvel at
             the starlit sky during tranquil evenings. The deck is a perfect
@@ -91,7 +91,7 @@ const Boat = ({ rentalId }) => {
             surrounded by nature's splendor.
           </p>
 
-          <p class="big-l">
+          <p className="big-l">
             Inside, the cozy cabin beckons with its inviting atmosphere and
             comfortable sleeping quarters, ensuring restful nights. The
             well-appointed galley provides all the essentials for preparing
@@ -99,7 +99,7 @@ const Boat = ({ rentalId }) => {
             skills.
           </p>
 
-          <p class="big-l">
+          <p className="big-l">
             Venture into the refreshing waters of Lake Serenity for a
             revitalizing swim or cast your fishing line for a chance to reel in
             the catch of the day. On lazy afternoons, recline on the plush
