@@ -56,7 +56,7 @@ app.post("/api/signup", async (req, res) => {
       token,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({ error: error.message});
   }
 });
