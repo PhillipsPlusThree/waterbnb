@@ -12,6 +12,7 @@ const Cards = ({ data, renderBoatPage }) => {
   };
 
   const handleClick = async (id) => {
+    console.log('clicked');
     if (likedCards.includes(id)) {
       // Remove the card from likedCards state
       setLikedCards(likedCards.filter((cardId) => cardId !== id));
