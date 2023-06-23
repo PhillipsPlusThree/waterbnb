@@ -1,11 +1,11 @@
 .boat-des {
-  margin:auto;
+  margin: auto;
   width: 75%;
   display: grid;
   justify-items: start;
 }
 
-h2 {
+.boat-title {
   font-weight: 500;
   font-size: 30px;
   margin-bottom: 10px;
@@ -37,7 +37,6 @@ h2 {
 }
 
 .img-container:first-child img {
-  
   width: 700px;
   height: 450px;
 }
@@ -49,7 +48,6 @@ h2 {
 }
 
 .img-container:nth-child(3) img {
-  
   margin-bottom: 10px;
   width: 500px;
   height: 220px; /* Adjust the width as per your preference */
@@ -60,10 +58,75 @@ h2 {
   height: 220px;
 }
 .img-container:nth-child(5) img {
- 
-  width: 500px; 
-  height: 220px;/* Adjust the width as per your preference */
+  width: 500px;
+  height: 220px; /* Adjust the width as per your preference */
 }
 
+#boat-box {
+  display: flex;
+  justify-content: space-around;
+  max-width: 80%;
+  margin-top: 50px;
+  margin-left: 200px;
+  margin-bottom: 50px;
+}
+
+#boat-description {
+  max-width: 50%;
+  font-size: large;
+}
+
+/* #boat-details {
+  margin-left: 5px;
+} */
+
+.big-l {
+  margin-bottom: 10px;
+}
+
+.bold-p {
+  font-weight: bold;
+}
+
+
+#dark h2 {
+  color: rgb(241, 241, 241);
+}
+
+#dark .boat-des {
+ color: #b2b0b0;
+}
+
+#dark .review {
+  color:#b2b0b0;
+}
+
+.small-p {
+  font-weight: lighter;
+  font-size: smaller;
+  margin-bottom: 20px;
+}
+
+#host {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+hr {
+  margin-bottom: 20px;
+}
+
+
+#dark .bold-p {
+  color: #b2b0b0;
+}
+
+#dark .small-p {
+  color: #b2b0b0;
+}
+
+#dark .big-l {
+  color: #b2b0b0;
+}
 
 

@@ -29,7 +29,7 @@ const Boat = ({ rentalId }) => {
       <div className="boat-des">
         {/* <h2>${rentalData.name}</h2> */}
         {/* <p>${rentalData.stars}${rentalData.location}</p> */}
-        <h2>{rentalData.description}</h2>
+        <h2 className="boat-title">{rentalData.description}</h2>
         <div className="review">
           <div className="rate">
             <AiFillStar />
@@ -52,11 +52,72 @@ const Boat = ({ rentalId }) => {
             <img className="sec-pic" src={rentalData.image5} alt="boat5" />
           </div>
         </div>
-        <p>Boat hosted by Rebecca</p>
-        <p>{rentalData.group_size} guests</p>
+        <p id="host">Boat hosted by Rebecca</p>
+        <p id="boat-details">
+          {rentalData.group_size} guests | 1 cabin | 2 beds | 1 bath
+        </p>
         {/* <p>${rentalData.description}</p> */}
       </div>
-      <Reservation />
+      <div id="boat-box">
+        <div id="boat-description">
+          <hr />
+          <span>
+            <p class="bold-p">Dedicated workspace</p>
+            <p class="small-p">
+              A room with wifi that's well-suited for working.
+            </p>
+          </span>
+          <span>
+            <p class="bold-p">Self check-in</p>
+            <p class="small-p">Check yourself in with the keypad.</p>
+          </span>
+          <span>
+            <p class="bold-p">Free cancellation for 48 hours.</p>
+          </span>
+          <hr />
+          <p class="big-l">
+            Welcome aboard the Aqua Haven! Prepare to embark on a remarkable
+            waterfront retreat like no other. Step onto this enchanting boat and
+            immerse yourself in a world of tranquility on the picturesque waters
+            of Lake Serenity. The Aqua Haven offers a truly unique and
+            unforgettable experience.
+          </p>
+
+          <p class="big-l">
+            Indulge in the breathtaking views of the glistening lake from the
+            expansive deck, where you can bask in the warm sunlight or marvel at
+            the starlit sky during tranquil evenings. The deck is a perfect
+            setting for alfresco dining, so savor delicious meals while
+            surrounded by nature's splendor.
+          </p>
+
+          <p class="big-l">
+            Inside, the cozy cabin beckons with its inviting atmosphere and
+            comfortable sleeping quarters, ensuring restful nights. The
+            well-appointed galley provides all the essentials for preparing
+            delightful meals, making it a breeze to showcase your culinary
+            skills.
+          </p>
+
+          <p class="big-l">
+            Venture into the refreshing waters of Lake Serenity for a
+            revitalizing swim or cast your fishing line for a chance to reel in
+            the catch of the day. On lazy afternoons, recline on the plush
+            lounge chairs and lose yourself in a captivating book as gentle
+            waves lull you into relaxation.
+          </p>
+
+          <p>
+            Escape the ordinary and embrace the serenity of life on the water at
+            Aqua Haven. Discover the true meaning of tranquility as you create
+            lasting memories in this idyllic retreat that seamlessly blends
+            nature's beauty with modern comforts. Your extraordinary waterfront
+            adventure awaits!
+          </p>
+        </div>
+        <hr />
+        <Reservation />
+      </div>
     </>
   );
 };

@@ -9,7 +9,9 @@ import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 import ReactSwitch from "react-switch";
 
-const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess }) => {
+
+
+const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleTheme }) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -48,7 +50,7 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess }) => {
                 <MdMenuOpen className="mr-2" />
                 <BsPersonCircle />
               </button>
-              {open && <DropDownLogin onHandleButtonClick={handleButtonClick}/>}
+              {open && <DropDownLogin theme={theme} toggleTheme={toggleTheme} onHandleButtonClick={handleButtonClick}/>}
             </div>
           </div>
         </div>
