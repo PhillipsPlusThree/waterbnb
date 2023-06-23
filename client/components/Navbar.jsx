@@ -48,7 +48,7 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess }) => {
                 <MdMenuOpen className="mr-2" />
                 <BsPersonCircle />
               </button>
-              {open && <DropDownLogin />}
+              {open && <DropDownLogin onHandleButtonClick={handleButtonClick}/>}
             </div>
           </div>
         </div>

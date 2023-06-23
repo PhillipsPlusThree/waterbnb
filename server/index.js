@@ -83,6 +83,7 @@ app.post("/api/login", async (req, res) => {
     res.json({
       status: "success",
       token,
+      user: user.rows[0],
     });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });

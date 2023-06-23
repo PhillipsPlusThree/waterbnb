@@ -3,9 +3,10 @@ import SignUp from './SignUp';
 import LogIn from './Login.jsx';
 import WaterBNBBoat from './WaterBNBBoat';
 
-function DropDownLogin() {
-  const Menus = ['Sign Up', 'Log in', 'Waterbnb your boat', 'Help'];
+function DropDownLogin( { onHandleButtonClick }) {
   const [selectedComponent, setSelectedComponent] = useState(null);
+  const Menus = ['Sign Up', 'Log in', 'Waterbnb your boat', 'Help'];
+
 
   const handleMenuClick = (menu) => {
     console.log(`${menu} clicked`);
@@ -13,7 +14,7 @@ function DropDownLogin() {
     if (menu === 'Sign Up') {
       setSelectedComponent(<SignUp />);
     } else if (menu === 'Log in') {
-      setSelectedComponent(<LogIn />);
+      setSelectedComponent(<LogIn onHandleButtonClick={onHandleButtonClick}/>);
     } else if (menu === 'Waterbnb your boat') {
       setSelectedComponent(<WaterBNBBoat />);
     } else if (menu === 'Help') {

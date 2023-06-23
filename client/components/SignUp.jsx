@@ -18,11 +18,15 @@ function SignUp() {
       });
       console.log(result.data);
       setSignUpStatus('Success');
+      setTimeout(() => {
+        window.location.pathname = '/';
+      }, 2000); 
     } catch (error) {
       console.error(error.response.data.error);
         setSignUpStatus(error.response.data.error) 
     }
   };
+  
   
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
