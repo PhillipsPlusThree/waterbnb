@@ -5,7 +5,7 @@
   justify-items: start;
 }
 
-h2 {
+.boat-title {
   font-weight: 500;
   font-size: 30px;
   margin-bottom: 10px;
@@ -115,4 +115,18 @@ h2 {
 hr {
   margin-bottom: 20px;
 }
+
+
+#dark .bold-p {
+  color: #b2b0b0;
+}
+
+#dark .small-p {
+  color: #b2b0b0;
+}
+
+#dark .big-l {
+  color: #b2b0b0;
+}
+
 
