@@ -235,15 +235,15 @@ function formatDates(rows) {
 }
 
 app.post("/api/my-rentals", (req, res) => {
-  const { id, location, price, date, group_size, image } = req.body;
+  const { id, location, price, date, group_size, image1 } = req.body;
 
   const insertQuery = `
-    INSERT INTO my_rentals (rental_id, location, price, date, group_size, image)
+    INSERT INTO my_rentals (rental_id, location, price, date, group_size, image1)
     VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;
   `;
 
-  const values = [id, location, price, date, group_size, image];
+  const values = [id, location, price, date, group_size, image1];
 
   // Execute the database query
   db.query(insertQuery, values)
