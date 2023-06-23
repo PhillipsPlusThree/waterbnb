@@ -24,7 +24,6 @@ function SignUp() {
     }
   };
   
-
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
       <div className="grid grid-cols-1 sm:grid-cols-2">

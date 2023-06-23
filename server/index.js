@@ -69,19 +69,22 @@ app.post("/api/login", async (req, res) => {
       username,
     ]);
 
+    if (user.rows.length === 0) {
+      return res.status(400).json({ err: 'Invalid username' });
+    }
+
     const isValid = await bcrypt.compare(password, user.rows[0].password);
-    console.log(isValid);
-    if (!isValid) {
-      return res.status(400).json({ err: "invalid password" });
+    console.log(isValid)
+    if(!isValid) {
+      return res.status(400).json({err: 'Invalid password'});
     }
     const token = jwt.sign(user.rows[0].id, process.env.JWT_TOKEN);
-
+    
     res.json({
       status: "success",
       token,
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
