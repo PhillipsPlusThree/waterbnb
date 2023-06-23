@@ -33,36 +33,36 @@ const Reservation = () => {
           <button id="reserve-btn">Reserve</button>
           <p>You won't be charged yet</p>
         </span>
-        <div class="price-box">
-          <div id="price-night" class="prices">
+        <div className="price-box">
+          <div id="price-night" className="prices">
             $500 x 7 nights
           </div>
-          <div id="priceXnight" class="prices">
+          <div id="priceXnight" className="prices">
             $3,500
           </div>
         </div>
-        <div class="price-box">
-          <div id="cleaning" class="prices">
+        <div className="price-box">
+          <div id="cleaning" className="prices">
             Cleaning fee
           </div>
-          <div id="cleaning-fee" class="prices">
+          <div id="cleaning-fee" className="prices">
             $125
           </div>
         </div>
-        <div class="price-box">
-          <div id="service" class="prices">
+        <div className="price-box">
+          <div id="service" className="prices">
             Airbnb service fee
           </div>
-          <div id="service-fee" class="prices">
+          <div id="service-fee" className="prices">
             $521
           </div>
         </div>
         <hr />
-        <div class="price-box">
-          <div id="total" class="prices">
+        <div className="price-box">
+          <div id="total" className="prices">
             Total before taxes
           </div>
-          <div id="total-price" class="prices">
+          <div id="total-price" className="prices">
             $4,146
           </div>
         </div>

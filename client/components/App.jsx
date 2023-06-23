@@ -14,6 +14,8 @@ const App = () => {
   const [data, setData] = useState([]);
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
+  const [searchSuccesful, setSearchSuccesful] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,30 +48,42 @@ const App = () => {
     setShowFilters(false);
   };
 
+  const handleSearchSuccess = () => {
+    setSearchSuccesful(true);
+  };
 
-    const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
 
-    const toggleTheme = () => {
-      setTheme((curr) => (curr === "light" ? "dark" : "light"));
-    };
-   return (
-    <ThemeContext.Provider value={[ theme, toggleTheme ]}>
+  return (
+    <ThemeContext.Provider value={[theme, toggleTheme]}>
       <div className="App" id={theme}>
-          <form />
+        <form />
 
         <div className="Switch">
-         <ReactSwitch className="rs" onChange={toggleTheme} checked={theme === "dark"} onColor="#333333" />
+          <ReactSwitch
+            className="rs"
+            onChange={toggleTheme}
+            checked={theme === "dark"}
+            onColor="#333333"
+          />
         </div>
-         <Navbar onRemoveCard={handleRemoveCard} onChange={toggleTheme} checked={theme === "dark"} />
-         <Filters onFilter={handleFilterApplied} />
-  
-         {selectedRental ? (
-           <Boat rentalId={selectedRental} />
-           ) : showCard && !filtersApplied ? (
-             <Cards data={data} renderBoatPage={renderBoatPage} />
-             ) : null}
-  
-         {/* Footer */}
+        <Navbar
+          onRemoveCard={handleRemoveCard}
+          onChange={toggleTheme}
+          onHideFilters={handleHideFilters}
+          onSearchSuccess={handleSearchSuccess}
+          checked={theme === "dark"}
+        />
+        {showFilters && <Filters onFilter={handleFilterApplied} />}
+        {selectedRental && !searchSuccesful && !showFilters ? (
+          <Boat rentalId={selectedRental} />
+        ) : showCard && !filtersApplied ? (
+          <Cards data={data} renderBoatPage={renderBoatPage} />
+        ) : null}
+
+        {/* Footer */}
       </div>
     </ThemeContext.Provider>
   );
