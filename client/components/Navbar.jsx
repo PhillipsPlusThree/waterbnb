@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 import logo from "../assets/logo.png";
 import "../styles/navbar.css";
 import { TbWorld } from "react-icons/tb";
-import { GrMenu } from "react-icons/gr";
+import { MdMenuOpen } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
@@ -30,9 +30,9 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess }) => {
           <img src={logo} alt="Logo" className="navbar-logo" />
           {/* middle */}
           <div className="navbar-links">
-            <button onClick={() => setShowForm(!showForm)}>Anywhere</button>
-            <button onClick={() => setShowForm(!showForm)}>Any Week</button>
-            <button onClick={() => setShowForm(!showForm)}>Add guests</button>
+            <button className="button-text" onClick={() => setShowForm(!showForm)}>Anywhere</button>
+            <button className="button-text" onClick={() => setShowForm(!showForm)}>Any Week</button>
+            <button className="button-text" onClick={() => setShowForm(!showForm)}>Add guests</button>
             <span className="search-icon">
               <BiSearchAlt />
             </span>
@@ -45,7 +45,7 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess }) => {
                 className="relative flex items-center"
                 onClick={handleButtonClick}
               >
-                <GrMenu className="mr-2" />
+                <MdMenuOpen className="mr-2" />
                 <BsPersonCircle />
               </button>
               {open && <DropDownLogin />}

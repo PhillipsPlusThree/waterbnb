@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-  margin: 0;
-}
-
-.main {
-  padding: 8px;
-}
-
 .task {
   display: flex;
   align-items: center;
@@ -27,3 +18,23 @@ body {
   margin-left: 4px;
 }
 
+#light {
+  background-color: white;
+}
+
+#dark {
+  background-color: #000000;
+}
+
+#light .rs {
+  background-color: #333333;
+}
+
+#dark .rs {
+  background-color: white;
+}
+
+.rs-handle,
+.rs-handle:active {
+  background-color: #ccc;
+}

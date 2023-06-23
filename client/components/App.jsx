@@ -1,10 +1,12 @@
 import React, { useEffect, useState, createContext } from "react";
+import "../app.css";
 import Cards from "./Cards";
 import Boat from "./Boat";
 import Navbar from "./Navbar";
 import Filters from "./Filters";
 import axios from "axios";
-import ReactSwitch from "react-switch";
+import Themes from "./Themes";
+import "../styles/themes.css";
 
 const ThemeContext = createContext(null);
 
@@ -61,14 +63,9 @@ const App = () => {
       <div className="App" id={theme}>
         <form />
 
-        <div className="Switch">
-          <ReactSwitch
-            className="rs"
-            onChange={toggleTheme}
-            checked={theme === "dark"}
-            onColor="#333333"
-          />
-        </div>
+        {/* Render the Themes component */}
+        <Themes theme={theme} toggleTheme={toggleTheme} />
+
         <Navbar
           onRemoveCard={handleRemoveCard}
           onChange={toggleTheme}
