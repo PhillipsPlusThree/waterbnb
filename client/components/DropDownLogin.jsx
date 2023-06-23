@@ -6,9 +6,12 @@ import Themes from "./Themes";
 import '../styles/dropdown.css';
 
 
-const  DropDownLogin = ({ theme, toggleTheme }) => {
+
+const  DropDownLogin = ({ theme, toggleTheme, onHandleButtonClick }) => {
   const Menus = ['Sign Up', 'Log in', 'Waterbnb your boat', 'Help'];
   const [selectedComponent, setSelectedComponent] = useState(null);
+  const Menus = ['Sign Up', 'Log in', 'Waterbnb your boat', 'Help'];
+
 
   const handleMenuClick = (menu) => {
     console.log(`${menu} clicked`);
@@ -16,7 +19,7 @@ const  DropDownLogin = ({ theme, toggleTheme }) => {
     if (menu === 'Sign Up') {
       setSelectedComponent(<SignUp />);
     } else if (menu === 'Log in') {
-      setSelectedComponent(<LogIn />);
+      setSelectedComponent(<LogIn onHandleButtonClick={onHandleButtonClick}/>);
     } else if (menu === 'Waterbnb your boat') {
       setSelectedComponent(<WaterBNBBoat />);
     } else if (menu === 'Help') {

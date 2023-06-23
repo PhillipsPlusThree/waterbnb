@@ -50,7 +50,7 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleThe
                 <MdMenuOpen className="mr-2" />
                 <BsPersonCircle />
               </button>
-              {open && <DropDownLogin theme={theme} toggleTheme={toggleTheme}/>}
+              {open && <DropDownLogin theme={theme} toggleTheme={toggleTheme} onHandleButtonClick={handleButtonClick}/>}
             </div>
           </div>
         </div>

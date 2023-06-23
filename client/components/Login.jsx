@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import boatLogo from '../assets/boat.png';
 import '../styles/login.css';
 
-function Login() {
+function Login({ setUser, onHandleButtonClick }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginStatus, setLoginStatus] = useState('');
-
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -32,7 +32,9 @@ function Login() {
           <img className="w-full h-full object-cover" id="LLogin" src={boatLogo} alt="" />
         </div>
         <div className="bg-gray-800 flex flex-col justify-center rounded-br-30" id="RLogin">
+        <button className='' onClick={onHandleButtonClick}>X</button>
           <form className="max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg" onSubmit={handleLogin}>
+          
             <h2 className="text-4x1 dark:text-white font-bold text-center">Login</h2>
             <div className="flex flex-col text-gray-400 py-2">
               <label>Username</label>
