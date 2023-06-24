@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import SignUp from './SignUp';
 import LogIn from './Login.jsx';
-import WaterBNBBoat from './WaterBNBBoat';
 import Themes from "./Themes";
+import MyRental from './MyRental';
 import '../styles/dropdown.css';
 
 
 
 const  DropDownLogin = ({ theme, toggleTheme, onHandleButtonClick }) => {
   const [selectedComponent, setSelectedComponent] = useState(null);
-  const Menus = ['Sign Up', 'Log in', 'My Rental', 'Help'];
+  const Menus = ['Sign Up', 'Log in', 'Liked Rental', 'Help'];
 
 
   const handleMenuClick = (menu) => {
@@ -19,12 +19,13 @@ const  DropDownLogin = ({ theme, toggleTheme, onHandleButtonClick }) => {
       setSelectedComponent(<SignUp onHandleButtonClick={onHandleButtonClick}/>);
     } else if (menu === 'Log in') {
       setSelectedComponent(<LogIn onHandleButtonClick={onHandleButtonClick}/>);
-    } else if (menu === 'My Rental') {
-      setSelectedComponent(<My Rental />);
+    } else if (menu === 'Liked Rental') {
+      setSelectedComponent(<MyRental onHandleButtonClick={onHandleButtonClick}/>);
     } else if (menu === 'Help') {
       window.location.href = 'https://www.youtube.com/@WillSwinson'
     }
   };
+
 
   return (
     <div className='bg-white p-4 w-52 shadow-lg absolute -left-30 top-24 z-10'>

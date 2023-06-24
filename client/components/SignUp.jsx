@@ -19,8 +19,9 @@ function SignUp({onHandleButtonClick}) {
       console.log(result.data);
       setSignUpStatus('Success');
       setTimeout(() => {
-        window.location.pathname = '/';
-      }, 2000); 
+        onHandleButtonClick()
+      }, 2000);
+      localStorage.setItem('username', result.data.username);
     } catch (error) {
       console.error(error.response.data.error);
         setSignUpStatus(error.response.data.error) 

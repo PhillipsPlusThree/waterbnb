@@ -16,8 +16,12 @@ function Login({ setUser, onHandleButtonClick }) {
         username: username,
         password: password,
       });
-      // console.log(result.data);
+      console.log(result.data.user.username);
       setLoginStatus('Success');
+      setTimeout(() => {
+        onHandleButtonClick()
+      }, 2000);
+      localStorage.setItem('username', result.data.user.username);
     } catch (error) {
       console.error(error);
       setLoginStatus(error.response.data.err);

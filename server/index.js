@@ -54,6 +54,7 @@ app.post("/api/signup", async (req, res) => {
     res.json({
       status: "success",
       token,
+      username: userData.rows[0].username
     });
   } catch (error) {
     // console.error(error.message);
@@ -234,7 +235,7 @@ function formatDates(rows) {
   });
 }
 
-app.post("/api/my-rentals", (req, res) => {
+app.post("/api/my-rentals", async (req, res) => {
   const { id, location, price, date, group_size, image1 } = req.body;
 
   const insertQuery = `
@@ -242,20 +243,41 @@ app.post("/api/my-rentals", (req, res) => {
     VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;
   `;
-
   const values = [id, location, price, date, group_size, image1];
 
-  // Execute the database query
-  db.query(insertQuery, values)
-    .then((result) => {
-      console.log("Inserted rental:", result.rows[0]); // Console log added here
-      res.json(result.rows[0]);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: "An error occurred" });
-    });
+  const rentalChecked = `
+  SELECT * FROM my_rentals
+  JOIN rentals ON my_rentals.rental_id = rentals.id
+  WHERE my_rentals.rental_id = $1;
+`;
+
+try {
+  const checkResult = await db.query(rentalChecked, [id]);
+  if (checkResult.rows.length > 0) {
+    return res.status(400).json({ error: "Boat already exists" });
+  }
+
+    const insertResult = await db.query(insertQuery, values);
+    console.log("Inserted rental:", insertResult.rows[0]);
+    res.json(insertResult.rows[0]);
+  } catch (error) {
+     console.error(error);
+     res.status(500).json({ error: "An error occurred" });
+}
+
+
 });
+
+app.get("/api/my-rentals", async (req, res) => {
+  try{
+    const { rows: likedIds } = await db.query("SELECT * FROM my_rentals JOIN rentals ON my_rentals.rental_id = rentals.id");
+    console.log(likedIds);
+    res.json({ likedIds })
+  } catch (error) {
+    console.error(error);
+  }
+
+})
 
 app.delete("/api/my-rentals/:id", (req, res) => {
   const rentalId = req.params.id;

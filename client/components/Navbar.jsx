@@ -24,6 +24,13 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleThe
     setOpen(!open);
   };
 
+    const handleLogout = () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      window.location.reload();
+    };
+
+
   return (
     <>
       <nav className="navbar">
@@ -40,8 +47,14 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleThe
             </span>
           </div>
           <div className="profile">
-            <p>Waterbnb your boat</p>
-            <TbWorld />
+            <p> {localStorage.getItem("username") != null ? "Hi, "+ localStorage.getItem("username") :  " "}</p>
+              <button onClick={handleLogout}>
+                  {localStorage.getItem('username') ? (
+                    'Logout'
+                  ) : (
+                    <TbWorld />
+                  )}
+              </button>
             <div className="profile-item">
               <button
                 className="relative flex items-center"
