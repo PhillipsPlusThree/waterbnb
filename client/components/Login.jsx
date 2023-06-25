@@ -4,7 +4,7 @@ import boatLogo from '../assets/boat.png';
 import '../styles/login.css';
 
 function Login({ setUser, onHandleButtonClick }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginStatus, setLoginStatus] = useState('');
   
@@ -13,14 +13,14 @@ function Login({ setUser, onHandleButtonClick }) {
 
     try {
       const result = await axios.post('/api/login', {
-        username: username,
+        email: email,
         password: password,
       });
       console.log(result.data.user.username);
       setLoginStatus('Success');
       setTimeout(() => {
         onHandleButtonClick()
-      }, 2000);
+      }, 1500);
       localStorage.setItem('username', result.data.user.username);
     } catch (error) {
       console.error(error);
@@ -44,16 +44,15 @@ function Login({ setUser, onHandleButtonClick }) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <form className="max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg" onSubmit={handleLogin}>
-          
+          <form className="max-w-[90%] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg" onSubmit={handleLogin}>        
             <h2 className="text-4x1 dark:text-white font-bold text-center">Login</h2>
             <div className="flex flex-col text-gray-400 py-2">
-              <label>Username</label>
+              <label>Email</label>
               <input
                 className="rounded-lg bg-gray-700 mt-1 p-1 focus:border-blue-500 focus:bg-gray-800 focus:outline-none"
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col text-gray-400 py-2">

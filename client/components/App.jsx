@@ -82,9 +82,7 @@ const App = () => {
           <Cards data={data} renderBoatPage={renderBoatPage} />
         ) : null}
 
-        {/* Footer */}
         
-
       </div>
     </ThemeContext.Provider>
   );

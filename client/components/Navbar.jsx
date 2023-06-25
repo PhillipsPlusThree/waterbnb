@@ -47,12 +47,12 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleThe
             </span>
           </div>
           <div className="profile">
-            <p> {localStorage.getItem("username") != null ? "Hi, "+ localStorage.getItem("username") :  " "}</p>
+            <p> {localStorage.getItem("username") != null ? "Hi, "+ localStorage.getItem("username") :  " "} </p>
               <button onClick={handleLogout}>
                   {localStorage.getItem('username') ? (
                     'Logout'
                   ) : (
-                    <TbWorld />
+                     <TbWorld />
                   )}
               </button>
             <div className="profile-item">

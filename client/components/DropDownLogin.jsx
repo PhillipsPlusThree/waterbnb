@@ -22,17 +22,18 @@ const  DropDownLogin = ({ theme, toggleTheme, onHandleButtonClick }) => {
     } else if (menu === 'Liked Rental') {
       setSelectedComponent(<MyRental onHandleButtonClick={onHandleButtonClick}/>);
     } else if (menu === 'Help') {
-      window.location.href = 'https://www.youtube.com/@WillSwinson'
+      alert("This will take you to real airbnb help website")
+      window.location.href = 'https://www.airbnb.com/help?audience=guest'
     }
   };
 
 
   return (
-    <div className='bg-white p-4 w-52 shadow-lg absolute -left-30 top-24 z-10'>
+    <div className='bg-white p-4 w-52 shadow-lg absolute -left-30 top-24 rounded-lg z-10'>
       <ul>
         {Menus.map((menu) => (
           <li
-            className="p-2 text-lg cursor-pointer rounded hover:bg-blue-100"
+            className="p-2 text-lg cursor-pointer rounded hover:bg-blue-100 "
             key={menu}
             onClick={() => handleMenuClick(menu)}
           >

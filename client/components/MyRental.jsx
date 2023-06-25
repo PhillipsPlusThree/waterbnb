@@ -19,7 +19,7 @@ function MyRental({onHandleButtonClick}) {
   }, []);
 
 
-  console.log(rentals, "asdfaoisdjfgaiosdg")
+  console.log(rentals)
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50" style={{ overflow: 'auto' }}>
       <div className="new-card-container" style={{marginTop: '20%'}}>
