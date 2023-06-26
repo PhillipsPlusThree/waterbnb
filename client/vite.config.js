@@ -5,7 +5,7 @@ dotenv.config({ path: "../.env" });
 export default {
   server: {
     proxy: {
-      "/api": `https://waterbnb-api.onrender.com`,
+      "/api": `http://localhost:${process.env.PORT}`,
     },
   },
   cacheDir: "../node_modules/.vite",
