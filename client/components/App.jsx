@@ -92,6 +92,7 @@ const App = () => {
             <Cards data={data} renderBoatPage={renderBoatPage} />
           </>
         )}
+        
       </div>
     </ThemeContext.Provider>
   );

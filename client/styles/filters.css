@@ -65,6 +65,14 @@
     filter: brightness(100%); /* Adjust the brightness value to 100% to make it white */
   }
 
-    
+  #dark .filter-icons {
+    box-shadow: 0 0px 2px rgba(255, 253, 253, 0.742);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
+    /* Add any other styles you need */
+  }
   
   

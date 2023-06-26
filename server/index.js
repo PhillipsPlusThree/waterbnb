@@ -29,11 +29,27 @@ app.get("/api/users", async (req, res) => {
 
 app.post("/api/signup", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, email, password } = req.body;
 
-    if (!username || !password) {
-      return res.status(400).json({ error: "Username and password are required" });
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "Username, password, and email required" });
+    };
+
+    if (password.length < 7) {
+      return res.status(400).json({ error: "Password must be minimum of 8 characters" });
+    };
+
+    if (username.length < 6) {
+      return res.status(400).json({ error: "Username must be minimum of 6 characters" });
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return res.status(400).json({ error: "Invalid email format" });
+    }; 
+
+    
+
 
     const isValid = await db.query("SELECT * FROM users WHERE username = $1", [
       username,
@@ -41,12 +57,12 @@ app.post("/api/signup", async (req, res) => {
 
     if (isValid.rows[0]) {
       throw new Error("User already exists");
-    }
+    };
 
 
     const userData = await db.query(
-      "INSERT INTO users(username, password) VALUES ($1, $2) RETURNING *",
-      [username, password]
+      "INSERT INTO users(username, email, password) VALUES ($1, $2, $3) RETURNING *",
+      [username, email, password]
     );
 
     const token = jwt.sign(userData.rows[0].id, process.env.JWT_TOKEN);
@@ -54,19 +70,20 @@ app.post("/api/signup", async (req, res) => {
     res.json({
       status: "success",
       token,
+      username: userData.rows[0].username
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({ error: error.message});
   }
 });
 
 app.post("/api/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    const user = await db.query("SELECT * FROM users WHERE username = $1", [
-      username,
+    const user = await db.query("SELECT * FROM users WHERE email = $1", [
+      email,
     ]);
 
     if (user.rows.length === 0) {
@@ -83,6 +100,7 @@ app.post("/api/login", async (req, res) => {
     res.json({
       status: "success",
       token,
+      user: user.rows[0],
     });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -176,6 +194,16 @@ app.get("/api/power-boat", (_, res) => {
   );
 });
 
+app.get("/api/trending", (_, res) => {
+  const rentalType = "Trending";
+  db.query("SELECT * FROM rentals WHERE type = $1", [rentalType]).then(
+    (data) => {
+      const formattedData = formatDates(data.rows);
+      res.json(formattedData);
+    }
+  );
+});
+
 // Helper function to format dates in the rows
 app.post("/api/rentals", (req, res) => {
   let { location, date, group_size } = req.body;
@@ -223,28 +251,47 @@ function formatDates(rows) {
   });
 }
 
-app.post("/api/my-rentals", (req, res) => {
-  const { id, location, price, date, group_size, image } = req.body;
+app.post("/api/my-rentals", async (req, res) => {
+  const { id, location, price, date, group_size, image1 } = req.body;
 
   const insertQuery = `
-    INSERT INTO my_rentals (rental_id, location, price, date, group_size, image)
+    INSERT INTO my_rentals (rental_id, location, price, date, group_size, image1)
     VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;
   `;
+  const values = [id, location, price, date, group_size, image1];
 
-  const values = [id, location, price, date, group_size, image];
+  const rentalChecked = `
+  SELECT * FROM my_rentals
+  JOIN rentals ON my_rentals.rental_id = rentals.id
+  WHERE my_rentals.rental_id = $1;
+`;
 
-  // Execute the database query
-  db.query(insertQuery, values)
-    .then((result) => {
-      console.log("Inserted rental:", result.rows[0]); // Console log added here
-      res.json(result.rows[0]);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: "An error occurred" });
-    });
+try {
+  const checkResult = await db.query(rentalChecked, [id]);
+  if (checkResult.rows.length > 0) {
+    return res.status(400).json({ error: "Boat already exists" });
+  }
+
+    const insertResult = await db.query(insertQuery, values);
+    console.log("Inserted rental:", insertResult.rows[0]);
+    res.json(insertResult.rows[0]);
+  } catch (error) {
+     console.error(error);
+     res.status(500).json({ error: "An error occurred" });
+  } 
 });
+
+app.get("/api/my-rentals", async (req, res) => {
+  try{
+    const { rows: likedIds } = await db.query("SELECT * FROM my_rentals JOIN rentals ON my_rentals.rental_id = rentals.id");
+    console.log(likedIds);
+    res.json({ likedIds })
+  } catch (error) {
+    console.error(error);
+  }
+
+})
 
 app.delete("/api/my-rentals/:id", (req, res) => {
   const rentalId = req.params.id;
