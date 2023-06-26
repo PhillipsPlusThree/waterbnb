@@ -40,6 +40,7 @@ CREATE TABLE my_rentals (
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY NOT NULL,
   username VARCHAR NOT NULL,
+  email VARCHAR NOT NULL,
   password VARCHAR NOT NULL
 );
 

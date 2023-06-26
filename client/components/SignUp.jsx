@@ -5,6 +5,7 @@ import '../styles/login.css';
 
 function SignUp({onHandleButtonClick}) {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
   const [signUpStatus, setSignUpStatus] = useState('');
 
@@ -14,13 +15,15 @@ function SignUp({onHandleButtonClick}) {
     try {
       const result = await axios.post('/api/signup', {
         username: username,
+        email: email,
         password: password,
       });
       console.log(result.data);
       setSignUpStatus('Success');
       setTimeout(() => {
-        window.location.pathname = '/';
-      }, 2000); 
+        onHandleButtonClick()
+      }, 1500);
+      localStorage.setItem('username', result.data.username);
     } catch (error) {
       console.error(error.response.data.error);
         setSignUpStatus(error.response.data.error) 
@@ -52,6 +55,15 @@ function SignUp({onHandleButtonClick}) {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col text-gray-400 py-2">
+              <label>Email</label>
+              <input
+                className="rounded-lg bg-gray-700 mt-1 p-1 focus:border-blue-500 focus:bg-gray-800 focus:outline-none"
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col text-gray-400 py-2">
