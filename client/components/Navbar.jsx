@@ -9,9 +9,14 @@ import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 import ReactSwitch from "react-switch";
 
-
-
-const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleTheme }) => {
+const Navbar = ({
+  onRemoveCard,
+  onHideFilters,
+  onSearchSuccess,
+  theme,
+  toggleTheme,
+  onNavbarImageClick,
+}) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -36,12 +41,32 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleThe
       <nav className="navbar">
         {/* left */}
         <div className="navbar-container">
-          <img src={logo} alt="Logo" className="navbar-logo" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="navbar-logo"
+            onClick={onNavbarImageClick}
+          />
           {/* middle */}
           <div className="navbar-links">
-            <button className="button-text" onClick={() => setShowForm(!showForm)}>Anywhere</button>
-            <button className="button-text" onClick={() => setShowForm(!showForm)}>Any Week</button>
-            <button className="button-text" onClick={() => setShowForm(!showForm)}>Add guests</button>
+            <button
+              className="button-text"
+              onClick={() => setShowForm(!showForm)}
+            >
+              Anywhere
+            </button>
+            <button
+              className="button-text"
+              onClick={() => setShowForm(!showForm)}
+            >
+              Any Week
+            </button>
+            <button
+              className="button-text"
+              onClick={() => setShowForm(!showForm)}
+            >
+              Add guests
+            </button>
             <span className="search-icon">
               <BiSearchAlt />
             </span>
@@ -63,7 +88,9 @@ const Navbar = ({ onRemoveCard, onHideFilters, onSearchSuccess, theme, toggleThe
                 <MdMenuOpen className="mr-2" />
                 <BsPersonCircle />
               </button>
+
               {open && <DropDownLogin theme={theme} toggleTheme={toggleTheme} onHandleButtonClick={handleButtonClick}/>}
+              
             </div>
           </div>
         </div>
