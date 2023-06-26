@@ -5,8 +5,8 @@ import Boat from "./Boat";
 import Navbar from "./Navbar";
 import Filters from "./Filters";
 import axios from "axios";
-import Themes from "./Themes";
 import "../styles/themes.css";
+
 
 const ThemeContext = createContext(null);
 
@@ -69,9 +69,9 @@ const App = () => {
         <form />
 
         {/* Render the Themes component */}
-        <Themes theme={theme} toggleTheme={toggleTheme} />
 
         <Navbar
+          theme={theme} toggleTheme={toggleTheme}
           onRemoveCard={handleRemoveCard}
           onChange={toggleTheme}
           onHideFilters={handleHideFilters}

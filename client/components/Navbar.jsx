@@ -7,9 +7,9 @@ import { BsPersonCircle } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
-import ReactSwitch from "react-switch";
 
-const Navbar = ({
+
+const Navbar =  ({
   onRemoveCard,
   onHideFilters,
   onSearchSuccess,
