@@ -5,11 +5,10 @@ import Boat from "./Boat";
 import Navbar from "./Navbar";
 import Filters from "./Filters";
 import axios from "axios";
-// import Themes from "./Themes";
+import Themes from "./Themes";
 import "../styles/themes.css";
 
 const ThemeContext = createContext(null);
-
 
 const App = () => {
   const [showCard, setShowCard] = useState(true);
@@ -19,6 +18,7 @@ const App = () => {
   const [showFilters, setShowFilters] = useState(true);
   const [searchSuccesful, setSearchSuccesful] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [showCardsAndFilters, setShowCardsAndFilters] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,29 +59,39 @@ const App = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
 
+  const handleNavbarImageClick = () => {
+    setShowCardsAndFilters((prevState) => !prevState);
+  };
+
   return (
     <ThemeContext.Provider value={[theme, toggleTheme]}>
       <div className="App" id={theme}>
         <form />
 
         {/* Render the Themes component */}
-        {/* <Themes theme={theme} toggleTheme={toggleTheme} /> */}
+        <Themes theme={theme} toggleTheme={toggleTheme} />
 
         <Navbar
-          theme={theme} toggleTheme={toggleTheme}
           onRemoveCard={handleRemoveCard}
           onChange={toggleTheme}
           onHideFilters={handleHideFilters}
           onSearchSuccess={handleSearchSuccess}
+          onNavbarImageClick={handleNavbarImageClick}
           checked={theme === "dark"}
         />
         {showFilters && <Filters onFilter={handleFilterApplied} />}
-        {selectedRental && !searchSuccesful && !showFilters ? (
+        {selectedRental && !showFilters && !showCardsAndFilters ? (
           <Boat rentalId={selectedRental} />
-        ) : showCard && !filtersApplied ? (
+        ) : showCard && !filtersApplied && !selectedRental ? (
           <Cards data={data} renderBoatPage={renderBoatPage} />
         ) : null}
 
+        {showCardsAndFilters && (
+          <>
+            <Filters onFilters={handleFilterApplied} />
+            <Cards data={data} renderBoatPage={renderBoatPage} />
+          </>
+        )}
         
       </div>
     </ThemeContext.Provider>
