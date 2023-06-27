@@ -1,0 +1,61 @@
+.about {
+    margin: auto;
+    width: 75%;
+    display: grid;
+    justify-items: center;
+}
+
+
+
+.waterbnb {
+    font-weight: 500;
+    font-size: 35px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.mission {
+    font-weight: 300;
+    font-size: 25px;
+
+}
+
+.team {
+    font-weight: 400;
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.meet {
+    display: grid;
+    width: 100%;
+}
+
+.person {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.us-pic {
+    width: 300px;
+    height: 300px;
+}
+
+.about-me {
+    display: grid;
+    margin-left: 30px;
+    justify-items: start;
+}
+
+.name {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.job {
+    font-weight: 500;
+    font-size: 20px; 
+}
+
+
