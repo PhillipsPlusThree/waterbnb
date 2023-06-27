@@ -127,18 +127,16 @@ app.get("/api/rentals", (_, res) => {
   });
 });
 
-// app.get("/api/rentals", (_, res) => {
-//   db.query("SELECT * FROM rentals").then((data) => {
-//     res.json(data.rows);
-//   });
-// });
 
 //Route to get Data from specifc Boat
 app.get("/api/rentals/:id", (req, res) => {
   const rentalId = req.params.id;
   db.query("SELECT * FROM rentals WHERE id =$1", [rentalId]).then((data) => {
     res.json(data.rows[0]);
-  });
+  }) .catch((error) => {
+    console.error(error);
+    res.status(500).json({ error: error });
+  })
 });
 
 app.get("/api/house-boat", (_, res) => {
@@ -147,8 +145,11 @@ app.get("/api/house-boat", (_, res) => {
     (data) => {
       const formattedData = formatDates(data.rows);
       res.json(formattedData);
-    }
-  );
+    })
+    .catch((error) => {
+      console.error("Error retrieving house boats:", error);
+      res.status(500).json({ error: "Failed to retrieve house boats" });
+    })
 });
 
 app.get("/api/yacht", (_, res) => {
@@ -157,8 +158,11 @@ app.get("/api/yacht", (_, res) => {
     (data) => {
       const formattedData = formatDates(data.rows);
       res.json(formattedData);
-    }
-  );
+    })
+    .catch((error) => {
+      console.error("Error retrieving yacht:", error);
+      res.status(500).json({ error: "Failed to retrieve yacht" });
+    })
 });
 
 app.get("/api/sail-boat", (_, res) => {
@@ -167,8 +171,11 @@ app.get("/api/sail-boat", (_, res) => {
     (data) => {
       const formattedData = formatDates(data.rows);
       res.json(formattedData);
-    }
-  );
+    })
+    .catch((error) => {
+      console.error("Error retrieving sail boats:", error);
+      res.status(500).json({ error: "Failed to retrieve sail boats" });
+    })
 });
 
 app.get("/api/fishing-boat", (_, res) => {
@@ -177,8 +184,11 @@ app.get("/api/fishing-boat", (_, res) => {
     (data) => {
       const formattedData = formatDates(data.rows);
       res.json(formattedData);
-    }
-  );
+    })
+    .catch((error) => {
+      console.error("Error retrieving fishing boats:", error);
+      res.status(500).json({ error: "Failed to retrieve fishing boats" });
+    })
 });
 
 app.get("/api/power-boat", (_, res) => {
@@ -187,8 +197,11 @@ app.get("/api/power-boat", (_, res) => {
     (data) => {
       const formattedData = formatDates(data.rows);
       res.json(formattedData);
-    }
-  );
+    })
+    .catch((error) => {
+      console.error("Error retrieving power boats:", error);
+      res.status(500).json({ error: "Failed to retrieve power boats" });
+    })
 });
 
 app.get("/api/trending", (_, res) => {
@@ -197,8 +210,11 @@ app.get("/api/trending", (_, res) => {
     (data) => {
       const formattedData = formatDates(data.rows);
       res.json(formattedData);
-    }
-  );
+    })
+    .catch((error) => {
+      console.error("Error retrieving trending rentals:", error);
+      res.status(500).json({ error: "Failed to retrieve trending rentals" });
+    });
 });
 
 // Helper function to format dates in the rows
