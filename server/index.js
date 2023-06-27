@@ -48,9 +48,6 @@ app.post("/api/signup", async (req, res) => {
         return res.status(400).json({ error: "Invalid email format" });
     }; 
 
-    
-
-
     const isValid = await db.query("SELECT * FROM users WHERE username = $1", [
       username,
     ]);
@@ -274,7 +271,7 @@ try {
   }
 
     const insertResult = await db.query(insertQuery, values);
-    console.log("Inserted rental:", insertResult.rows[0]);
+    // console.log("Inserted rental:", insertResult.rows[0]);
     res.json(insertResult.rows[0]);
   } catch (error) {
      console.error(error);
@@ -285,7 +282,7 @@ try {
 app.get("/api/my-rentals", async (req, res) => {
   try{
     const { rows: likedIds } = await db.query("SELECT * FROM my_rentals JOIN rentals ON my_rentals.rental_id = rentals.id");
-    console.log(likedIds);
+    // console.log(likedIds);
     res.json({ likedIds })
   } catch (error) {
     console.error(error);
@@ -294,20 +291,22 @@ app.get("/api/my-rentals", async (req, res) => {
 })
 
 app.delete("/api/my-rentals/:id", (req, res) => {
-  const rentalId = req.params.id;
+  const rentalId  = Number(req.params.id);
 
   const query = `
     DELETE FROM my_rentals
-    WHERE id = $1
+    WHERE rental_id = $1 RETURNING *
   `;
 
+  console.log(rentalId)
   const values = [rentalId];
 
   // Execute the database query
   db.query(query, values)
-    .then(() => {
-      console.log(`Deleted rental with ID ${rentalId} from my_rentals`);
-      res.sendStatus(204);
+    .then((data) => {
+     console.log("data", data.rows[0]);
+      // console.log(`Deleted rental with ID ${rentalId} from my_rentals`);
+      res.status(200).json(data.rows[0]);
     })
     .catch((error) => {
       console.error(error);
