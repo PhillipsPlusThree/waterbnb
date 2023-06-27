@@ -4,7 +4,7 @@ import { IoMdHeart } from 'react-icons/io';
 import '../styles/cards.css';
 import axios from 'axios';
 
-const Cards = ({ data, renderBoatPage }) => {
+const Cards = ({ data, renderBoatPage, renderAboutPage }) => {
   const [likedCards, setLikedCards] = useState([]);
 
   const handleCardClick = (rentalId) => {

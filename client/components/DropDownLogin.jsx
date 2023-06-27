@@ -41,6 +41,11 @@ const  DropDownLogin = ({ theme, toggleTheme, onHandleButtonClick }) => {
             {menu}
           </li>
         ))}
+        {/* {!showAbout && (
+          <button onClick={handleAboutClick}>Show About</button>
+        )}
+
+        {showAbout && <About onAbout={renderAboutPage} />} */}
         <div className='mode'>Theme
         <Themes theme={theme} toggleTheme={toggleTheme} />
         </div>

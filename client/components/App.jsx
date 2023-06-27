@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import Filters from "./Filters";
 import axios from "axios";
 import "../styles/themes.css";
-
+import About from "./About";
 
 const ThemeContext = createContext(null);
 
@@ -19,6 +19,7 @@ const App = () => {
   const [searchSuccesful, setSearchSuccesful] = useState(false);
   const [theme, setTheme] = useState("light");
   const [showCardsAndFilters, setShowCardsAndFilters] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +33,17 @@ const App = () => {
 
     fetchData();
   }, []);
+
+  const renderAboutPage = () => {
+    setShowAbout(true);
+    setShowCard(false);
+    setShowFilters(false);
+  };
+
+  const handleAboutClick = () => {
+    setShowAbout(true);
+    setShowCard(false);
+  };
 
   const renderBoatPage = (rentalId) => {
     setSelectedRental(rentalId);
@@ -71,6 +83,8 @@ const App = () => {
         {/* Render the Themes component */}
 
         <Navbar
+          onClick={handleAboutClick}
+          onAbout={renderAboutPage}
           theme={theme} toggleTheme={toggleTheme}
           onRemoveCard={handleRemoveCard}
           onChange={toggleTheme}
@@ -83,7 +97,7 @@ const App = () => {
         {selectedRental && !showFilters && !showCardsAndFilters ? (
           <Boat rentalId={selectedRental} />
         ) : showCard && !filtersApplied && !selectedRental ? (
-          <Cards data={data} renderBoatPage={renderBoatPage} />
+          <Cards data={data} renderBoatPage={renderBoatPage} renderAboutPage={renderAboutPage} />
         ) : null}
 
         {showCardsAndFilters && (
@@ -92,6 +106,12 @@ const App = () => {
             <Cards data={data} renderBoatPage={renderBoatPage} />
           </>
         )}
+        
+        {!showAbout && (
+          <button onClick={handleAboutClick}>Show About</button>
+        )}
+
+        {showAbout && <About onAbout={renderAboutPage} />}
         
       </div>
     </ThemeContext.Provider>

@@ -10,6 +10,7 @@ import Search from "./Search";
 
 
 const Navbar =  ({
+  
   onRemoveCard,
   onHideFilters,
   onSearchSuccess,
@@ -19,6 +20,8 @@ const Navbar =  ({
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
+
+
 
   const handleSearch = (searchData) => {
     // Perform search or any other action based on the selected inputs
@@ -38,6 +41,8 @@ const Navbar =  ({
 
   return (
     <>
+   
+   
       <nav className="navbar">
         {/* left */}
         <div className="navbar-container">
