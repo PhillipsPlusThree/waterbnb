@@ -4,6 +4,7 @@ import brooklyn from "../assets/brooklyn.png";
 import phillipM from "../assets/PhillipM.png";
 import phillipS from "../assets/PhillipS.png";
 import fitz from "../assets/fitz.png";
+import tayla from "../assets/tayla.png"
 
 
 
@@ -16,7 +17,7 @@ const About = ({ onAbout }) => {
     <div className='about'>
       <h1 className='waterbnb'>WaterBnb - About Us</h1>
       <h2 className='mission'> Our Mission</h2>
-      <p>At WaterBnb, our mission is to provide a seamless and unforgettable
+      <p className='desc'>At WaterBnb, our mission is to provide a seamless and unforgettable
          experience for water enthusiasts around the world. We understand the
           love for water-based activities and aim to connect travelers with 
           unique and exceptional accommodations on or near the water. We strive 
@@ -27,6 +28,28 @@ const About = ({ onAbout }) => {
       <h2 className='team'>Meet Our Team</h2>
       <div className='person'>
         <img
+            src={tayla}
+            alt="Logo"
+            className="us-pic"
+        />
+        <div className='about-me'>
+        <h2 className='name'>Tayla Enns</h2>
+        <h2 className='job'>Project Manager</h2>
+        <p className='desc'>Tayla Enns is a versatile professional serving as both a project 
+        manager and software engineer. Currently a fullstack developer bootcamp student, Tayla 
+        possesses a wide range of skills and knowledge in the field. She has a keen interest in 
+        agile workflow management and debugging, ensuring projects are delivered efficiently and 
+        with high quality. Tayla's expertise lies in workflow management, where she excels in 
+        coordinating teams and optimizing processes. Additionally, she holds a boating license, 
+        showcasing her affinity for water activities and safety. Inspired by the serene waters of 
+        Huntington Beach and Virginia Beach, Tayla brings her passion for waterfront destinations 
+        to the WaterBnb project, aiming to create a seamless and enjoyable experience for users 
+        seeking unforgettable adventures by the ocean.</p>
+        </div>
+        </div>
+        <div
+        className='person'>
+        <img
             src={brooklyn}
             alt="Logo"
             className="us-pic"
@@ -34,7 +57,7 @@ const About = ({ onAbout }) => {
         <div className='about-me'>
         <h2 className='name'>Brooklyn Parsons</h2>
         <h2 className='job'>Frontend Engineer</h2>
-        <p>Brooklyn is frontend engineer with a unique background in 
+        <p className='desc'>Brooklyn is frontend engineer with a unique background in 
           hardware engineering who has recently delved into the world of computer coding.
           Despite the unconventional path, her passion for technology and dedication
           to learning has led them to excel in frontend development. She have a particular 
@@ -46,6 +69,7 @@ const About = ({ onAbout }) => {
             exceptional platform for water enthusiasts like themselves.</p>
         </div>
         </div>
+        </div>
         <div className='person'>
         <img
             src={phillipM}
@@ -55,7 +79,7 @@ const About = ({ onAbout }) => {
         <div className='about-me'>
         <h2 className='name'>Phillip Meija</h2>
         <h2 className='job'>React Subject Matter Expert</h2>
-        <p>Phillip Mejia is a React Subject Matter Expert and a full-stack web developer bootcamp
+        <p className='desc' >Phillip Mejia is a React Subject Matter Expert and a full-stack web developer bootcamp
            student. With a passion for frontend development, Phillip specializes in state management
            using React hooks and is well-versed in creating efficient and interactive user interfaces.
            One of his standout contributions to the WaterBnb project is the development of the boat rendering
@@ -76,7 +100,7 @@ const About = ({ onAbout }) => {
         <div className='about-me'>
         <h2 className='name'>Fitz Gerald Sicat</h2>
         <h2 className='job'>Backend Developer</h2>
-        <p>Fitz Gerald Sicat is a dedicated backend developer with a unique background 
+        <p className='desc'>Fitz Gerald Sicat is a dedicated backend developer with a unique background 
           as an aircraft mechanic for six years. Currently, he is leveraging his mechanical 
           expertise to excel as a software engineer. Fitz Gerald's ability to troubleshoot complex 
           systems and attention to detail translates seamlessly into his backend development work. He 
@@ -100,7 +124,7 @@ const About = ({ onAbout }) => {
         <div className='about-me'>
         <h2 className='name'>Phillip Sussman</h2>
         <h2 className='job'>Backend Developer</h2>
-        <p>Phillip Sussman is a talented backend developer 
+        <p className='desc'>Phillip Sussman is a talented backend developer 
           and a full-stack web development and software engineering 
           bootcamp student. With a strong foundation in both frontend and 
           backend development, Phillip excels in building robust and secure applications. 
@@ -115,7 +139,7 @@ const About = ({ onAbout }) => {
         </div>
         </div>
               </div>
-            </div>
+           
           
 
   )
