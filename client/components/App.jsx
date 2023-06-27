@@ -85,7 +85,8 @@ const App = () => {
         <Navbar
           onClick={handleAboutClick}
           onAbout={renderAboutPage}
-          theme={theme} toggleTheme={toggleTheme}
+          theme={theme}
+          toggleTheme={toggleTheme}
           onRemoveCard={handleRemoveCard}
           onChange={toggleTheme}
           onHideFilters={handleHideFilters}
@@ -97,7 +98,11 @@ const App = () => {
         {selectedRental && !showFilters && !showCardsAndFilters ? (
           <Boat rentalId={selectedRental} />
         ) : showCard && !filtersApplied && !selectedRental ? (
-          <Cards data={data} renderBoatPage={renderBoatPage} renderAboutPage={renderAboutPage} />
+          <Cards
+            data={data}
+            renderBoatPage={renderBoatPage}
+            renderAboutPage={renderAboutPage}
+          />
         ) : null}
 
         {showCardsAndFilters && (
@@ -106,13 +111,10 @@ const App = () => {
             <Cards data={data} renderBoatPage={renderBoatPage} />
           </>
         )}
-        
-        {!showAbout && (
-          <button onClick={handleAboutClick}>Show About</button>
-        )}
+
+        {/* {!showAbout && } */}
 
         {showAbout && <About onAbout={renderAboutPage} />}
-        
       </div>
     </ThemeContext.Provider>
   );
