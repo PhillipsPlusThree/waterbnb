@@ -30,8 +30,9 @@ const Navbar =  ({
   };
 
     const handleLogout = () => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('username');
+      // localStorage.removeItem('token');
+      // localStorage.removeItem('username');
+      localStorage.clear();
       window.location.reload();
     };
 
