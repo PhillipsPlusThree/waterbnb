@@ -8,20 +8,17 @@ import { BiSearchAlt } from "react-icons/bi";
 import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 
-
-const Navbar =  ({
-  
+const Navbar = ({
   onRemoveCard,
   onHideFilters,
   onSearchSuccess,
   theme,
   toggleTheme,
   onNavbarImageClick,
+  onAbout,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
-
-
 
   const handleSearch = (searchData) => {
     // Perform search or any other action based on the selected inputs
@@ -32,18 +29,14 @@ const Navbar =  ({
     setOpen(!open);
   };
 
-    const handleLogout = () => {
-      // localStorage.removeItem('token');
-      // localStorage.removeItem('username');
-      localStorage.clear();
-      window.location.reload();
-    };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    window.location.reload();
+  };
 
   return (
     <>
-   
-   
       <nav className="navbar">
         {/* left */}
         <div className="navbar-container">
@@ -78,14 +71,15 @@ const Navbar =  ({
             </span>
           </div>
           <div className="profile">
-            <p> {localStorage.getItem("username") != null ? "Hi, "+ localStorage.getItem("username") :  " "} </p>
-              <button onClick={handleLogout}>
-                  {localStorage.getItem('username') ? (
-                    'Logout'
-                  ) : (
-                     <TbWorld />
-                  )}
-              </button>
+            <p>
+              {" "}
+              {localStorage.getItem("username") != null
+                ? "Hi, " + localStorage.getItem("username")
+                : " "}{" "}
+            </p>
+            <button onClick={handleLogout}>
+              {localStorage.getItem("username") ? "Logout" : <TbWorld />}
+            </button>
             <div className="profile-item">
               <button
                 className="relative flex items-center"
@@ -95,8 +89,14 @@ const Navbar =  ({
                 <BsPersonCircle />
               </button>
 
-              {open && <DropDownLogin theme={theme} toggleTheme={toggleTheme} onHandleButtonClick={handleButtonClick}/>}
-              
+              {open && (
+                <DropDownLogin
+                  theme={theme}
+                  toggleTheme={toggleTheme}
+                  onHandleButtonClick={handleButtonClick}
+                  onAbout={onAbout}
+                />
+              )}
             </div>
           </div>
         </div>
