@@ -1,9 +1,9 @@
 import React, { useEffect, useState, createContext } from "react";
 import "../app.css";
-import Cards from "./Cards";
+import Card from "./Card";
 import Boat from "./Boat";
 import Navbar from "./Navbar";
-import Filters from "./Filters";
+// import Filters from "./Filters";
 import axios from "axios";
 import "../styles/themes.css";
 import About from "./About";
@@ -15,14 +15,13 @@ const App = () => {
   const [selectedRental, setSelectedRental] = useState(null);
   const [data, setData] = useState([]);
   const [filtersApplied, setFiltersApplied] = useState(false);
-  const [showFilters, setShowFilters] = useState(true);
   const [searchSuccesful, setSearchSuccesful] = useState(false);
   const [theme, setTheme] = useState("light");
-  const [showCardsAndFilters, setShowCardsAndFilters] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [likedCards, setLikedCards] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAllBoats = async () => {
       try {
         const response = await axios.get("/api/rentals");
         setData(response.data);
@@ -31,7 +30,7 @@ const App = () => {
       }
     };
 
-    fetchData();
+    fetchAllBoats();
   }, []);
 
   const renderAboutPage = () => {
@@ -40,14 +39,8 @@ const App = () => {
     setShowFilters(false);
   };
 
-  const handleAboutClick = () => {
-    setShowAbout(true);
-    setShowCard(false);
-  };
-
   const renderBoatPage = (rentalId) => {
     setSelectedRental(rentalId);
-    setShowFilters(false);
   };
 
   const handleRemoveCard = () => {
@@ -59,19 +52,11 @@ const App = () => {
     setFiltersApplied(true);
   };
 
-  const handleHideFilters = () => {
-    setShowFilters(false);
-  };
-
-  const handleSearchSuccess = () => {
-    setSearchSuccesful(true);
-  };
-
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
 
-  const handleNavbarImageClick = () => {
+  const handleIconClick = () => {
     setShowCardsAndFilters((prevState) => !prevState);
   };
 
@@ -80,41 +65,30 @@ const App = () => {
       <div className="App" id={theme}>
         <form />
 
-        {/* Render the Themes component */}
-
         <Navbar
-          onClick={handleAboutClick}
           onAbout={renderAboutPage}
           theme={theme}
           toggleTheme={toggleTheme}
-          onRemoveCard={handleRemoveCard}
           onChange={toggleTheme}
-          onHideFilters={handleHideFilters}
-          onSearchSuccess={handleSearchSuccess}
-          onNavbarImageClick={handleNavbarImageClick}
           checked={theme === "dark"}
+          onRemoveCard={handleRemoveCard}
+          // onSearchSuccess={handleSearchSuccess}
+          onIconClick={handleIconClick}
         />
-        {showFilters && <Filters onFilter={handleFilterApplied} />}
-        {selectedRental && !showFilters && !showCardsAndFilters ? (
-          <Boat rentalId={selectedRental} />
-        ) : showCard && !filtersApplied && !selectedRental ? (
-          <Cards
-            data={data}
-            renderBoatPage={renderBoatPage}
-            renderAboutPage={renderAboutPage}
-          />
-        ) : null}
-
-        {showCardsAndFilters && (
-          <>
-            <Filters onFilters={handleFilterApplied} />
-            <Cards data={data} renderBoatPage={renderBoatPage} />
-          </>
-        )}
-
-        {/* {!showAbout && } */}
-
-        {showAbout && <About onAbout={renderAboutPage} />}
+        {/* <Filters onFilter={handleFilterApplied} /> */}
+        <div className="card-container">
+          {data.map((rental) => (
+            <Card
+              key={rental.id}
+              rental={rental}
+              renderBoatPage={renderBoatPage}
+              likedCards={likedCards}
+              setLikedCards={setLikedCards}
+            />
+          ))}
+        </div>
+        {selectedRental && <Boat rentalId={selectedRental} />}
+        {/* <Card onLiked={handleLike} /> */}
       </div>
     </ThemeContext.Provider>
   );
