@@ -26,8 +26,8 @@ const Card = ({ rental, renderBoatPage, likedCards, setLikedCards }) => {
       setLikedCards([...likedCards, id]);
       // Add the card to my_rentals table
       try {
-        await axios.post("/api/my-rentals", rental.id);
-        console.log("Added to my_rentals:", rental.id);
+        await axios.post("/api/my-rentals", rental);
+        console.log("Added to my_rentals:", rental);
       } catch (error) {
         console.error("Error adding to my_rentals:", error);
       }
@@ -37,16 +37,21 @@ const Card = ({ rental, renderBoatPage, likedCards, setLikedCards }) => {
   return (
     <div className="card" onClick={() => handleCardClick(rental.id)}>
       <img src={rental.image1} alt={rental.location} />
-      <div
-        className={`like ${likedCards.includes(rental.id) ? "liked" : ""}`}
-        onClick={() => handleClick(rental.id)}
+      <button
+        className={`like-button ${
+          likedCards.includes(rental.id) ? "liked" : ""
+        }`}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleClick(rental.id);
+        }}
       >
         {likedCards.includes(rental.id) ? (
           <IoMdHeart className="like" />
         ) : (
           <IoMdHeartEmpty className="like" />
         )}
-      </div>
+      </button>
       <h2>{rental.location}</h2>
       <p>${rental.price}</p>
       <p>{rental.date}</p>

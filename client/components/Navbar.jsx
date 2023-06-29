@@ -9,21 +9,23 @@ import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 
 const Navbar = ({
-  onRemoveCard,
-  onHideFilters,
   onSearchSuccess,
   theme,
   toggleTheme,
-  onNavbarImageClick,
+  onIconClick,
   onAbout,
+  location,
+  setLocation,
+  date,
+  setDate,
+  groupSize,
+  setGroupSize,
+  noResults,
+  setNoResults,
+  handleSearch,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
-
-  const handleSearch = (searchData) => {
-    // Perform search or any other action based on the selected inputs
-    console.log("Search Data:", searchData);
-  };
 
   const handleButtonClick = () => {
     setOpen(!open);
@@ -44,7 +46,7 @@ const Navbar = ({
             src={logo}
             alt="Logo"
             className="navbar-logo"
-            onClick={onNavbarImageClick}
+            onClick={onIconClick}
           />
           {/* middle */}
           <div className="navbar-links">
@@ -101,14 +103,7 @@ const Navbar = ({
           </div>
         </div>
         {/*right*/}
-        {showForm && (
-          <Search
-            onSearch={handleSearch}
-            onRemoveCard={onRemoveCard}
-            onHideFilters={onHideFilters}
-            onSearchSuccess={onSearchSuccess}
-          />
-        )}
+        {showForm && <Search onSearchSuccess={onSearchSuccess} />}
       </nav>
     </>
   );

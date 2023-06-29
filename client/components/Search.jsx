@@ -1,48 +1,20 @@
 import React, { useState } from "react";
 import "../styles/search.css";
 import axios from "axios";
-// import SearchCard from './SearchCard';
 
-const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
-  const [location, setLocation] = useState("");
-  const [date, setDate] = useState("");
-  // const [endDate, setEndDate] = useState('');
-  const [group_size, setGroup_size] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+const Search = ({
+  onSearchSuccess,
+  location,
+  setLocation,
+  date,
+  setDate,
+  groupSize,
+  setGroupSize,
+  noResults,
+  setNoResults,
+  handleSearch,
+}) => {
   const [showModal, setShowModal] = useState(true);
-
-  const handleLocationChange = (e) => {
-    setLocation(e.target.value);
-  };
-
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
-
-  // const handleEndDateChange = (e) => {
-  //   setEndDate(e.target.value);
-  // };
-
-  const handleGuestsChange = (e) => {
-    setGroup_size(e.target.value);
-  };
-
-  const handleSearch = async () => {
-    try {
-      const response = await axios.post("/api/rentals", {
-        location,
-        date,
-        group_size,
-      });
-      setSearchResults(response.data);
-      onRemoveCard();
-      onHideFilters();
-      setShowModal(false);
-      onSearchSuccess();
-    } catch (error) {
-      console.error("Error fetching search results:", error);
-    }
-  };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -62,7 +34,7 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
                 type="text"
                 className="modal-input"
                 value={location}
-                onChange={handleLocationChange}
+                onChange={setLocation}
               />
             </div>
             <div className="modal-form-group">
@@ -71,7 +43,7 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
                 type="date"
                 className="modal-input"
                 value={date}
-                onChange={handleDateChange}
+                onChange={setDate}
               />
             </div>
             <div className="modal-form-group">
@@ -79,27 +51,15 @@ const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
               <input
                 type="number"
                 className="modal-input"
-                value={group_size}
-                onChange={handleGuestsChange}
+                value={groupSize}
+                onChange={setGroupSize}
               />
             </div>
             <button className="modal-button" onClick={handleSearch}>
               Search
             </button>
+            {noResults && <p>No Results found please try again. </p>}
           </div>
-        </div>
-      )}
-      {!showModal && searchResults.length > 0 && (
-        <div className="new-card-container">
-          {searchResults.map((rental) => (
-            <div className="new-card" key={rental.id}>
-              <img src={rental.image1} alt={rental.location} />
-              <h2>{rental.location}</h2>
-              <p>${rental.price}</p>
-              <p>{rental.date}</p>
-              <p>{rental.group_size} guests</p>
-            </div>
-          ))}
         </div>
       )}
     </div>
