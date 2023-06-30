@@ -15,20 +15,28 @@ const Navbar = ({
   onIconClick,
   onAbout,
   location,
-  setLocation,
+  onLocationChange,
   date,
-  setDate,
+  onDateChange,
   groupSize,
-  setGroupSize,
+  onGroupSizeChange,
   noResults,
   setNoResults,
   handleSearch,
+  showModal,
+  onModal,
+  setShowModal,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [open, setOpen] = useState(false);
 
   const handleButtonClick = () => {
     setOpen(!open);
+  };
+
+  const handleSearchForm = () => {
+    setShowForm(!showForm);
+    setShowModal(true);
   };
 
   const handleLogout = () => {
@@ -50,22 +58,13 @@ const Navbar = ({
           />
           {/* middle */}
           <div className="navbar-links">
-            <button
-              className="button-text"
-              onClick={() => setShowForm(!showForm)}
-            >
+            <button className="button-text" onClick={handleSearchForm}>
               Anywhere
             </button>
-            <button
-              className="button-text"
-              onClick={() => setShowForm(!showForm)}
-            >
+            <button className="button-text" onClick={handleSearchForm}>
               Any Week
             </button>
-            <button
-              className="button-text"
-              onClick={() => setShowForm(!showForm)}
-            >
+            <button className="button-text" onClick={handleSearchForm}>
               Add guests
             </button>
             <span className="search-icon">
@@ -103,7 +102,22 @@ const Navbar = ({
           </div>
         </div>
         {/*right*/}
-        {showForm && <Search onSearchSuccess={onSearchSuccess} />}
+        {showForm && (
+          <Search
+            onSearchSuccess={onSearchSuccess}
+            location={location}
+            onLocationChange={onLocationChange}
+            date={date}
+            onDateChange={onDateChange}
+            groupSize={groupSize}
+            onGroupSizeChange={onGroupSizeChange}
+            noResults={noResults}
+            setNoResults={setNoResults}
+            handleSearch={handleSearch}
+            showModal={showModal}
+            onModal={onModal}
+          />
+        )}
       </nav>
     </>
   );

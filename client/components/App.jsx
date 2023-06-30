@@ -22,6 +22,7 @@ const App = () => {
   const [date, setDate] = useState("");
   const [groupSize, setGroupSize] = useState("");
   const [noResults, setNoResults] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   useEffect(() => {
     const fetchAllBoats = async () => {
@@ -48,6 +49,13 @@ const App = () => {
     setGroupSize(e.target.value);
   };
 
+  const handleModal = () => {
+    setShowModal(false);
+    setLocation("");
+    setGroupSize("");
+    setDate("");
+  };
+
   const handleSearch = async () => {
     console.log("searched");
     if (groupSize.length > 0 && date.length > 0 && location.length > 0) {
@@ -60,6 +68,8 @@ const App = () => {
         if (response.data.length >= 1) {
           setShowModal(false);
           setData(response.data);
+
+          console.log(date, location, groupSize);
         } else {
           setLocation("");
           setGroupSize("");
@@ -70,6 +80,10 @@ const App = () => {
         console.error("Error fetching search results:", error);
       }
     }
+    setLocation("");
+    setGroupSize("");
+    setDate("");
+    console.log(date, location, groupSize);
   };
 
   const handleFilterChange = async (type) => {
@@ -122,14 +136,17 @@ const App = () => {
           checked={theme === "dark"}
           onIconClick={handleIconClick}
           location={location}
-          setLocation={setLocation}
+          onLocationChange={handleLocationChange}
           date={date}
-          setDate={setDate}
+          onDateChange={handleDateChange}
           groupSize={groupSize}
-          setGroupSize={setGroupSize}
+          onGroupSizeChange={handleGroupSizeChange}
           noResults={noResults}
           setNoResults={setNoResults}
           handleSearch={handleSearch}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          onModal={handleModal}
         />
         <Filters onFilterChange={handleFilterChange} />
         <div className="card-container">

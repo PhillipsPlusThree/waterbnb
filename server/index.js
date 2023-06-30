@@ -90,8 +90,8 @@ app.post("/api/search", (req, res) => {
     .then((result) => {
       const formattedData = formatDates(result.rows);
       res.json(formattedData);
-      const filteredResults = result.rows;
-      res.json(filteredResults);
+      // const filteredResults = result.rows;
+      // res.json(filteredResults);
     })
     .catch((error) => {
       console.error(error);

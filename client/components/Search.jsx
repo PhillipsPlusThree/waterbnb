@@ -5,27 +5,23 @@ import axios from "axios";
 const Search = ({
   onSearchSuccess,
   location,
-  setLocation,
+  onLocationChange,
   date,
-  setDate,
+  onDateChange,
   groupSize,
-  setGroupSize,
+  onGroupSizeChange,
   noResults,
   setNoResults,
   handleSearch,
+  showModal,
+  onModal,
 }) => {
-  const [showModal, setShowModal] = useState(true);
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <div>
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <button className="close-button" onClick={handleCloseModal}>
+            <button className="close-button" onClick={onModal}>
               X
             </button>
             <div className="modal-form-group">
@@ -34,7 +30,7 @@ const Search = ({
                 type="text"
                 className="modal-input"
                 value={location}
-                onChange={setLocation}
+                onChange={onLocationChange}
               />
             </div>
             <div className="modal-form-group">
@@ -43,7 +39,7 @@ const Search = ({
                 type="date"
                 className="modal-input"
                 value={date}
-                onChange={setDate}
+                onChange={onDateChange}
               />
             </div>
             <div className="modal-form-group">
@@ -52,7 +48,7 @@ const Search = ({
                 type="number"
                 className="modal-input"
                 value={groupSize}
-                onChange={setGroupSize}
+                onChange={onGroupSizeChange}
               />
             </div>
             <button className="modal-button" onClick={handleSearch}>
