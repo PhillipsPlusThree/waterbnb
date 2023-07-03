@@ -23,19 +23,20 @@ const App = () => {
   const [groupSize, setGroupSize] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [showModal, setShowModal] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const fetchAllBoats = async () => {
+    const fetchBoats = async () => {
       try {
-        const response = await axios.get("/api/rentals");
-        setData(response.data);
+        const response = await axios.get(`/api/rentals?page=${currentPage}`);
+        setData((prevData) => [...prevData, ...response.data]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchAllBoats();
-  }, [showCard]);
+    fetchBoats();
+  }, [currentPage, showCard]);
 
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
@@ -122,6 +123,24 @@ const App = () => {
     }
     setShowCard((prevState) => !prevState);
   };
+
+  const handleScroll = () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.offsetHeight;
+    const isAtBottom = scrollTop + windowHeight >= documentHeight - 100;
+
+    if (isAtBottom) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <ThemeContext.Provider value={[theme, toggleTheme]}>

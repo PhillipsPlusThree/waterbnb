@@ -32,8 +32,15 @@ function formatDates(rows) {
   });
 }
 
-app.get("/api/rentals", (_, res) => {
-  db.query("SELECT * FROM rentals")
+app.get("/api/rentals", (req, res) => {
+  const pageSize = 20; // Number of rentals to fetch per page
+  const pageNumber = req.query.page || 1; // Get the requested page number from the query parameter (default: 1)
+
+  const offset = (pageNumber - 1) * pageSize;
+
+  db.query(
+    `SELECT * FROM rentals ORDER BY id LIMIT ${pageSize} OFFSET ${offset}`
+  )
     .then((data) => {
       // Iterate over the rows and format the date field
       const formattedData = formatDates(data.rows);
@@ -90,8 +97,6 @@ app.post("/api/search", (req, res) => {
     .then((result) => {
       const formattedData = formatDates(result.rows);
       res.json(formattedData);
-      // const filteredResults = result.rows;
-      // res.json(filteredResults);
     })
     .catch((error) => {
       console.error(error);

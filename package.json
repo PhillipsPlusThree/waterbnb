@@ -12,6 +12,7 @@
     "dev:server": "npm run dev --workspace=server"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "autoprefixer": "^10.4.14",
     "concurrently": "^7.1.0",
     "gh-pages": "^5.0.0",
