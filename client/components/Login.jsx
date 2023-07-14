@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import boatLogo from '../assets/boat.png';
 import '../styles/login.css';
+
 
 function Login({ setUser, onHandleButtonClick }) {
   const [email, setEmail] = useState('');

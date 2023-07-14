@@ -7,6 +7,8 @@ import Filters from "./Filters";
 import axios from "axios";
 import Themes from "./Themes";
 import "../styles/themes.css";
+//import Compression from "compression";
+
 
 const ThemeContext = createContext(null);
 
@@ -19,7 +21,7 @@ const App = () => {
   const [searchSuccesful, setSearchSuccesful] = useState(false);
   const [theme, setTheme] = useState("light");
   const [showCardsAndFilters, setShowCardsAndFilters] = useState(false);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,40 +31,40 @@ const App = () => {
         console.error("Error fetching data:", error);
       }
     };
-
+    
     fetchData();
   }, []);
-
+  
   const renderBoatPage = (rentalId) => {
     setSelectedRental(rentalId);
     setShowFilters(false);
   };
-
+  
   const handleRemoveCard = () => {
     setShowCard(false);
   };
-
+  
   const handleFilterApplied = () => {
     setShowCard(false);
     setFiltersApplied(true);
   };
-
+  
   const handleHideFilters = () => {
     setShowFilters(false);
   };
-
+  
   const handleSearchSuccess = () => {
     setSearchSuccesful(true);
   };
-
+  
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
-
+  
   const handleNavbarImageClick = () => {
     setShowCardsAndFilters((prevState) => !prevState);
   };
-
+  
   return (
     <ThemeContext.Provider value={[theme, toggleTheme]}>
       <div className="App" id={theme}>
@@ -78,13 +80,13 @@ const App = () => {
           onSearchSuccess={handleSearchSuccess}
           onNavbarImageClick={handleNavbarImageClick}
           checked={theme === "dark"}
-        />
+          />
         {showFilters && <Filters onFilter={handleFilterApplied} />}
         {selectedRental && !showFilters && !showCardsAndFilters ? (
           <Boat rentalId={selectedRental} />
-        ) : showCard && !filtersApplied && !selectedRental ? (
-          <Cards data={data} renderBoatPage={renderBoatPage} />
-        ) : null}
+          ) : showCard && !filtersApplied && !selectedRental ? (
+            <Cards data={data} renderBoatPage={renderBoatPage} />
+            ) : null}
 
         {showCardsAndFilters && (
           <>
@@ -98,4 +100,5 @@ const App = () => {
   );
 };
 
+//App.use(Compression());
 export default App;

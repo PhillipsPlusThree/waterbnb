@@ -3,6 +3,7 @@ import axios from 'axios';
 import boatLogo from '../assets/boat.png';
 import '../styles/login.css';
 
+
 function SignUp({onHandleButtonClick}) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('')

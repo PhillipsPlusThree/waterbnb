@@ -9,6 +9,7 @@ import DropDownLogin from "./DropDownLogin";
 import Search from "./Search";
 import ReactSwitch from "react-switch";
 
+
 const Navbar = ({
   onRemoveCard,
   onHideFilters,

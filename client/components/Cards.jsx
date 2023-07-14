@@ -3,6 +3,8 @@ import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoMdHeart } from 'react-icons/io';
 import '../styles/cards.css';
 import axios from 'axios';
+import Imgix from "react-imgix";
+
 
 const Cards = ({ data, renderBoatPage }) => {
   const [likedCards, setLikedCards] = useState([]);
@@ -51,7 +53,12 @@ const Cards = ({ data, renderBoatPage }) => {
             className="card"
             onClick={() => handleCardClick(rental.id)}
           >
-            <img src={rental.image1} alt={rental.location} />
+            <Imgix
+        src={rental.image1}
+        imgixParams={{ auto: 'format' }}
+        htmlAttributes={{ alt:rental.location }}
+      />
+            {/* <img src={rental.image1} alt={rental.location} /> */}
             <div
               className={`like ${likedCards.includes(rental.id) ? 'liked' : ''}`}
               onClick={() => handleClick(rental.id)}

@@ -3,6 +3,7 @@ import "../styles/search.css";
 import axios from "axios";
 // import SearchCard from './SearchCard';
 
+
 const Search = ({ onSearch, onRemoveCard, onHideFilters, onSearchSuccess }) => {
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");

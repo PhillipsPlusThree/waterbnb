@@ -4,6 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import "../styles/boat.css";
 import Reservation from "./Reservation.jsx";
 
+
 const Boat = ({ rentalId }) => {
   const [rentalData, setRentalData] = useState(null);
 

@@ -7,6 +7,7 @@ import { RiHomeSmileLine } from 'react-icons/ri';
 import axios from 'axios';
 import Cards from './Cards';
 
+
 const Filters = ( { onFilter }) => {
   const sorting = [
     { type: 'trending', title: 'Trending', icon: <HiOutlineFire /> },

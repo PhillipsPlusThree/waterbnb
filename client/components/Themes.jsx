@@ -1,6 +1,7 @@
 import React from "react";
 import ReactSwitch from "react-switch";
 
+
 const Themes = ({ theme, toggleTheme }) => {
   return (
     <div className="themes">
